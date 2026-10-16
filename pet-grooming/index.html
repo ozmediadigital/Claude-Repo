@@ -1,0 +1,565 @@
+<title>Pawlour Grooming Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Premium, low-stress dog and cat grooming in Sydney. Full grooms, bath and tidy, puppy intros and cat grooms. Book online in 60 seconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Yellowtail&display=swap">
+<style>
+/* Layout: soft fog canvas, oversized animated headline left, stacked photo cards right; modular rounded panels below, like a well-kept salon counter. */
+:root{
+  --bg:#ECEEEB;        /* fog */
+  --panel:#F7F8F6;     /* towel white */
+  --panel-2:#E1E5E0;   /* tile */
+  --ink:#151816;
+  --muted:#5C635E;
+  --line:#CDD3CD;
+  --accent:#2E6B5C;    /* eucalyptus */
+  --accent-ink:#F4F7F5;
+  --foam:#CFE3DC;      /* soap foam */
+  --shadow:0 24px 60px -28px rgba(21,24,22,.35);
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Instrument Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-script:"Yellowtail", "Brush Script MT", cursive;
+  --r-lg:28px; --r-md:18px; --r-sm:999px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121513; --panel:#1A1E1C; --panel-2:#222826; --ink:#EDF1EE; --muted:#A3ACA6;
+    --line:#2F3733; --accent:#7CC4AF; --accent-ink:#0F1A16; --foam:#24413A;
+    --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121513; --panel:#1A1E1C; --panel-2:#222826; --ink:#EDF1EE; --muted:#A3ACA6;
+  --line:#2F3733; --accent:#7CC4AF; --accent-ink:#0F1A16; --foam:#24413A;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:600}
+h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.lede{color:var(--muted);max-width:52ch}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.6em;border:0;cursor:pointer;font:600 .95rem var(--f-body);
+  padding:.9em 1.4em;border-radius:var(--r-sm);text-decoration:none;transition:transform .2s ease, background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn .arr{display:inline-block;transition:transform .2s ease}
+.btn:hover .arr{transform:translate(2px,-2px)}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:18px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.92rem}
+.nav ul a{text-decoration:none;opacity:.8}
+.nav ul a:hover{opacity:1}
+.logo{font-family:var(--f-script);font-size:2rem;text-decoration:none;line-height:1}
+.nav-r{display:flex;justify-content:flex-end;align-items:center;gap:22px}
+.nav .btn{padding:.65em 1.1em;font-size:.88rem}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-block:36px 56px;position:relative}
+.hero-copy{display:grid;gap:26px;position:relative;z-index:2;min-width:0}
+.headline{font-size:clamp(3.2rem,9.4vw,7.6rem);font-weight:800;letter-spacing:-.045em;line-height:.9}
+.headline .line{display:block;overflow:hidden;padding-bottom:.06em}
+.headline .ch{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) backwards}
+.headline .script{font-family:var(--f-script);font-weight:400;letter-spacing:0;color:var(--accent);font-size:.82em}
+@keyframes rise{from{transform:translateY(105%) rotate(6deg);opacity:0}to{transform:none;opacity:1}}
+.rotator{font-family:var(--f-display);font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:400;display:flex;flex-wrap:wrap;gap:.35em;align-items:baseline}
+.rot-box{position:relative;display:inline-grid;height:1.3em;overflow:hidden;vertical-align:bottom}
+.rot-box span{grid-area:1/1;font-weight:600;color:var(--accent);white-space:nowrap;transition:transform .55s cubic-bezier(.7,0,.2,1), opacity .55s}
+.rot-box span.out{transform:translateY(-110%);opacity:0}
+.rot-box span.in{transform:translateY(110%);opacity:0}
+.rot-box::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--accent);transform-origin:left;animation:underline 2.8s ease-in-out infinite}
+@keyframes underline{0%{transform:scaleX(0)}40%,80%{transform:scaleX(1)}100%{transform:scaleX(0);transform-origin:right}}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.proof{display:flex;flex-wrap:wrap;gap:28px;align-items:center;padding-top:8px}
+.proof-item{display:flex;gap:12px;align-items:center}
+.proof-ic{width:44px;height:44px;border-radius:12px;background:var(--panel);display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line)}
+.proof b{font-family:var(--f-display);font-size:1.5rem;display:block;line-height:1;font-variant-numeric:tabular-nums}
+.proof small{color:var(--muted);font-size:.82rem}
+
+.hero-media{position:relative;min-height:520px;min-width:0}
+.ph{position:relative;overflow:hidden;background:linear-gradient(150deg,var(--foam),var(--panel-2));border-radius:var(--r-lg)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.ph .fb{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;color:var(--accent);font-size:.8rem;text-align:center;padding:12px}
+.ph .fb svg{width:42px;height:42px;opacity:.55}
+.ph img.gone{display:none}
+.hm-main{position:absolute;right:0;top:0;width:78%;height:100%;max-height:560px;box-shadow:var(--shadow);animation:floaty 7s ease-in-out infinite}
+.hm-small{position:absolute;left:0;bottom:40px;width:44%;aspect-ratio:3/4;max-width:100%;border:6px solid var(--panel);box-shadow:var(--shadow);z-index:3;animation:floaty 7s ease-in-out -3.5s infinite}
+.tag{position:absolute;z-index:4;background:var(--panel);border-radius:var(--r-sm);padding:.55em 1em;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);display:flex;align-items:center;gap:.5em}
+.tag .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
+.tag-1{right:16px;top:22px}
+.tag-2{left:6%;top:18%}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Soap bubbles */
+.bubbles{position:absolute;inset:-40px -20px 0;pointer-events:none;z-index:1;overflow:hidden}
+.bubble{position:absolute;bottom:-60px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.15) 35%,transparent 60%),radial-gradient(circle,transparent 58%,color-mix(in srgb,var(--accent) 35%,transparent) 70%,transparent 72%);
+  border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);animation:bubble linear infinite}
+@keyframes bubble{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.9}100%{transform:translate(var(--dx),-720px) scale(1);opacity:0}}
+
+/* Marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
+.marquee-track{display:flex;gap:44px;width:max-content;animation:marq 32s linear infinite;font-family:var(--f-display);font-size:1.35rem;font-weight:600}
+.marquee-track span{display:flex;align-items:center;gap:44px;white-space:nowrap}
+.marquee-track span::after{content:"✦";color:var(--accent);font-size:.8em}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+section{padding-block:88px}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:44px}
+.sec-head > *{min-width:0}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc{background:var(--panel);border-radius:var(--r-lg);padding:10px 10px 20px;display:grid;gap:14px;align-content:start;transition:transform .3s ease}
+.svc:hover{transform:translateY(-6px)}
+.svc .ph{aspect-ratio:1/1;border-radius:var(--r-md)}
+.svc .ph img{transition:transform .6s ease}
+.svc:hover .ph img{transform:scale(1.06)}
+.svc-body{padding-inline:10px;display:grid;gap:6px}
+.svc-body p{color:var(--muted);font-size:.92rem}
+.svc-meta{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;padding-top:6px;font-variant-numeric:tabular-nums}
+.svc-meta span:last-child{color:var(--accent)}
+
+/* Process */
+.process{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+.process .ph{min-height:420px}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.step{background:var(--panel-2);border-radius:var(--r-md);padding:22px;display:grid;gap:10px;align-content:start}
+.step-n{font-family:var(--f-display);font-size:.85rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.step p{color:var(--muted);font-size:.92rem}
+.process-copy{grid-column:1/-1;display:grid;gap:12px;margin-bottom:8px}
+
+/* Pricing */
+.price-wrap{background:var(--panel);border-radius:var(--r-lg);padding:clamp(20px,4vw,44px);box-shadow:var(--shadow)}
+.price-table{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:560px}
+th,td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+td:first-child{font-family:var(--f-display);font-weight:600;font-size:1.1rem}
+td small{display:block;font-family:var(--f-body);font-weight:400;color:var(--muted);font-size:.82rem}
+td.p{font-weight:600}
+tr:last-child td{border-bottom:0}
+.price-notes{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{background:var(--panel-2);border-radius:var(--r-sm);padding:.45em .95em;font-size:.83rem}
+
+/* Why */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why-card{border-radius:var(--r-lg);padding:28px;display:grid;gap:12px;align-content:start;background:var(--panel)}
+.why-card.feature{background:var(--accent);color:var(--accent-ink)}
+.why-card.feature p{color:inherit;opacity:.85}
+.why-card p{color:var(--muted);font-size:.95rem}
+.big-num{font-family:var(--f-display);font-size:3.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+
+/* Reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{background:var(--panel);border-radius:var(--r-lg);padding:26px;display:grid;gap:16px;align-content:space-between}
+.review q{font-family:var(--f-display);font-size:1.12rem;line-height:1.4;quotes:"“" "”"}
+.review footer{font-size:.85rem;color:var(--muted)}
+.stars{color:var(--accent);letter-spacing:2px}
+
+/* Booking */
+.book{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--ink);color:var(--bg);border-radius:var(--r-lg);padding:clamp(24px,5vw,56px);position:relative;overflow:hidden}
+.book > *{min-width:0;position:relative;z-index:2}
+.book h2{color:var(--bg)}
+.book .lede{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:grid;gap:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em}
+input,select{font:500 .95rem var(--f-body);padding:.85em 1em;border-radius:14px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);width:100%}
+select option{color:#151816}
+.full{grid-column:1/-1}
+.book .btn-primary{background:var(--accent);color:var(--accent-ink);justify-content:center}
+.form-msg{grid-column:1/-1;font-size:.9rem;min-height:1.4em;color:var(--foam)}
+.book-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.book-list li{display:flex;gap:10px;align-items:center}
+.book-list li::before{content:"";width:18px;height:18px;border-radius:50%;flex:none;background:var(--accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat, linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude}
+
+/* Footer */
+footer.site{padding-block:56px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;border-top:1px solid var(--line);margin-top:40px}
+footer.site h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.92rem}
+footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
+.legal{grid-column:1/-1;font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px}
+
+/* Responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .hero-media{min-height:440px}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .process,.book{grid-template-columns:1fr}
+  .why,.reviews{grid-template-columns:1fr 1fr}
+  .why-card.feature{grid-column:1/-1}
+  .reviews .review:last-child{grid-column:1/-1}
+  footer.site{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .nav-in{grid-template-columns:auto 1fr}
+  .nav-l{display:none}
+  .nav-r ul{display:none}
+  .sec-head{grid-template-columns:1fr}
+  section{padding-block:60px}
+}
+@media (max-width:560px){
+  .services,.steps,.why,.reviews,form{grid-template-columns:1fr}
+  .reviews .review:last-child{grid-column:auto}
+  .hero-media{min-height:380px}
+  .hm-main{width:84%}
+  .hm-small{width:46%;bottom:20px}
+  .tag-2{display:none}
+  footer.site{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .bubbles{display:none}
+}
+</style>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <ul class="nav-l">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#process">How it works</a></li>
+    </ul>
+    <a class="logo" href="#top" aria-label="Pawlour home">Pawlour</a>
+    <div class="nav-r">
+      <ul>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <a class="btn btn-primary" href="#book">Book a groom <span class="arr" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero" style="padding-top:28px">
+    <div class="bubbles" aria-hidden="true" id="bubbles"></div>
+    <div class="hero-copy">
+      <span class="eyebrow">Dog &amp; cat grooming studio · Mosman, Sydney</span>
+      <h1 class="headline" aria-label="Fresh coat. Calm pet.">
+        <span class="line" data-split>Fresh coat.</span>
+        <span class="line"><span class="script" data-split>Calm pet.</span></span>
+      </h1>
+      <p class="rotator">
+        <span>Groomed with</span>
+        <span class="rot-box" aria-live="polite">
+          <span>warm towels</span>
+          <span class="in">zero rushing</span>
+          <span class="in">Fear Free handling</span>
+          <span class="in">a bandana on top</span>
+        </span>
+      </p>
+      <p class="lede">One pet on the table at a time, no cage drying, and a photo text when they're ready. Full grooms, bath and tidy, puppy intros and cat grooms from $55.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#book">Book in 60 seconds <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="#pricing">See prices</a>
+      </div>
+      <div class="proof">
+        <div class="proof-item">
+          <div class="proof-ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          </div>
+          <div><b data-count="4.9" data-dec="1">4.9</b><small>from 612 Google reviews</small></div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg>
+          </div>
+          <div><b data-count="8400" data-suffix="+">8,400+</b><small>grooms since 2019</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="ph hm-main">
+        <img src="https://images.unsplash.com/photo-1772437883387-8076cf660c65?auto=format&fit=crop&w=900&h=1100&q=70" alt="Freshly groomed Bichon Frise wearing a blue bandana and tie" loading="eager">
+      </div>
+      <div class="ph hm-small">
+        <img src="https://images.unsplash.com/photo-1570888234661-a2428afad010?auto=format&fit=crop&w=520&h=700&q=70" alt="White Japanese Spitz with a fluffed, blow-dried coat" loading="eager">
+      </div>
+      <div class="tag tag-1"><span class="dot"></span> Next opening: Thu 9:30am</div>
+      <div class="tag tag-2">🛁 Hydrobath · blow-dry · nails</div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Full groom</span><span>Bath &amp; tidy</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Puppy intro</span><span>Cat lion cut</span>
+      <span>Full groom</span><span>Bath &amp; tidy</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Puppy intro</span><span>Cat lion cut</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="sec-head">
+      <h2>Find the groom that fits your pet</h2>
+      <p class="lede">Every visit starts with a coat and skin check, so we groom for the pet in front of us, not the one in the booking system.</p>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=600&h=600&q=70" alt="Fluffy cockapoo running on grass" loading="lazy"></div>
+        <div class="svc-body">
+          <h3>Full groom</h3>
+          <p>Bath, blow-dry, breed or custom cut, nails, ears and a finishing spritz.</p>
+          <div class="svc-meta"><span>2–3 hrs</span><span>from $85</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&h=600&q=70" alt="Jack Russell Terrier smiling" loading="lazy"></div>
+        <div class="svc-body">
+          <h3>Bath &amp; tidy</h3>
+          <p>Hydrobath, de-shed, face, feet and sanitary trim between full grooms.</p>
+          <div class="svc-meta"><span>60–90 min</span><span>from $55</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&h=600&q=70" alt="Brown and white puppy" loading="lazy"></div>
+        <div class="svc-body">
+          <h3>Puppy intro</h3>
+          <p>A short, treat-heavy first visit for pups 10–20 weeks. Builds trust for life.</p>
+          <div class="svc-meta"><span>45 min</span><span>$49</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?auto=format&fit=crop&w=600&h=600&q=70" alt="Grey tabby cat looking calm" loading="lazy"></div>
+        <div class="svc-body">
+          <h3>Cat groom</h3>
+          <p>Quiet-room bath, dematting or lion cut. Cat-only mornings, no barking.</p>
+          <div class="svc-meta"><span>60–90 min</span><span>from $95</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="process" style="padding-top:0">
+    <div class="process">
+      <div class="process-copy">
+        <span class="eyebrow">How a visit works</span>
+        <h2>From booking to bandana in four steps</h2>
+      </div>
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&w=800&h=1000&q=70" alt="Fluffy white Samoyed on a pink background" loading="lazy">
+      </div>
+      <div class="steps">
+        <div class="step"><span class="step-n">Step 1</span><h3>Book online</h3><p>Pick a service and time. Tell us about coat, temperament and any no-go zones.</p></div>
+        <div class="step"><span class="step-n">Step 2</span><h3>Calm check-in</h3><p>Five-minute handover, coat and skin check, and we agree the cut before scissors come out.</p></div>
+        <div class="step"><span class="step-n">Step 3</span><h3>The pamper</h3><p>Warm hydrobath, hand blow-dry, cut, nails and ears. Breaks whenever your pet needs one.</p></div>
+        <div class="step"><span class="step-n">Step 4</span><h3>Photo text &amp; pick-up</h3><p>You get an SMS with a photo when they're done. No waiting around in a cage.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="padding-top:0">
+    <div class="sec-head">
+      <h2>Clear prices by size</h2>
+      <p class="lede">Prices in AUD, including GST. Final price is confirmed at check-in after a coat check, never after the groom.</p>
+    </div>
+    <div class="price-wrap">
+      <div class="price-table">
+        <table>
+          <thead><tr><th>Size</th><th>Bath &amp; tidy</th><th>Full groom</th><th>Hand-scissor finish</th></tr></thead>
+          <tbody>
+            <tr><td>Small<small>under 10 kg · Cavoodle, Maltese, Shih Tzu</small></td><td class="p">$55</td><td class="p">$85</td><td class="p">$110</td></tr>
+            <tr><td>Medium<small>10–20 kg · Spoodle, Cocker, Schnauzer</small></td><td class="p">$70</td><td class="p">$105</td><td class="p">$135</td></tr>
+            <tr><td>Large<small>20–35 kg · Labradoodle, Golden Retriever</small></td><td class="p">$90</td><td class="p">$130</td><td class="p">$165</td></tr>
+            <tr><td>Giant<small>35 kg+ · Bernese, Samoyed, Newfoundland</small></td><td class="p">$115</td><td class="p">$160+</td><td class="p">$195+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="price-notes">
+        <span class="chip">Dematting: $15 per 15 min</span>
+        <span class="chip">Teeth brushing add-on: $12</span>
+        <span class="chip">Blueberry facial: $10</span>
+        <span class="chip">Every 4–6 weeks? Save 10%</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="why">
+      <div class="why-card feature">
+        <span class="eyebrow" style="color:inherit;opacity:.8">Why owners switch to us</span>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.4rem)">One pet at a time. No cage dryers. Ever.</h2>
+        <p>Most anxious pets aren't scared of the clippers. They're scared of the noise, the waiting and being rushed. We removed all three.</p>
+      </div>
+      <div class="why-card">
+        <span class="big-num" data-count="96" data-suffix="%">96%</span>
+        <h3>of clients rebook</h3>
+        <p>Most of our calendar is regulars on a 4–6 week cycle.</p>
+      </div>
+      <div class="why-card">
+        <span class="big-num">Fear&nbsp;Free</span>
+        <h3>Certified groomers</h3>
+        <p>Low-stress handling, pH-balanced, soap-free shampoos and breaks on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" style="padding-top:0">
+    <div class="sec-head">
+      <h2>What owners say</h2>
+      <p class="lede">Sample reviews for this template. Replace with your real Google reviews.</p>
+    </div>
+    <div class="reviews">
+      <figure class="review" style="margin:0">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <q>Our rescue cavoodle used to shake at the groomer. Third visit here and she trotted in on her own.</q>
+        <footer>Sarah K. · Cremorne · Cavoodle, 7 kg</footer>
+      </figure>
+      <figure class="review" style="margin:0">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <q>Price quoted at drop-off was exactly what I paid. And the photo text is a lovely touch.</q>
+        <footer>James P. · Neutral Bay · Golden Retriever, 31 kg</footer>
+      </figure>
+      <figure class="review" style="margin:0">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <q>Finally somewhere that grooms cats without sedation drama. Lion cut was perfect.</q>
+        <footer>Mei L. · Mosman · Persian cat</footer>
+      </figure>
+    </div>
+  </section>
+
+  <section id="book" style="padding-top:0">
+    <div class="book">
+      <div>
+        <span class="eyebrow" style="color:var(--foam)">Book a groom</span>
+        <h2 style="margin-top:12px">Book in 60 seconds. We'll text to confirm.</h2>
+        <ul class="book-list">
+          <li>Tue–Sat, 8am–5pm. Cat-only mornings Wednesday.</li>
+          <li>Free rebooking if your pet is unwell.</li>
+          <li>Free parking out front on Military Rd.</li>
+        </ul>
+      </div>
+      <form id="bookForm" novalidate>
+        <label>Your name<input id="f-name" name="name" autocomplete="name" required placeholder="Alex Chen"></label>
+        <label>Mobile<input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="04xx xxx xxx"></label>
+        <label>Pet's name<input id="f-pet" name="pet" required placeholder="Biscuit"></label>
+        <label>Size
+          <select id="f-size" name="size">
+            <option>Small (under 10 kg)</option><option>Medium (10–20 kg)</option><option>Large (20–35 kg)</option><option>Giant (35 kg+)</option><option>Cat</option>
+          </select>
+        </label>
+        <label class="full">Service
+          <select id="f-service" name="service">
+            <option>Full groom</option><option>Bath &amp; tidy</option><option>Puppy intro</option><option>Cat groom</option>
+          </select>
+        </label>
+        <button class="btn btn-primary full" type="submit">Request my booking <span class="arr" aria-hidden="true">↗</span></button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div>
+      <a class="logo" href="#top">Pawlour</a>
+      <p style="margin-top:12px">Low-stress dog and cat grooming on Sydney's lower north shore.</p>
+    </div>
+    <div><h4>Services</h4><ul><li>Full groom</li><li>Bath &amp; tidy</li><li>Puppy intro</li><li>Cat groom</li></ul></div>
+    <div><h4>Studio</h4><ul><li>Military Rd, Mosman NSW 2088</li><li>Tue–Sat · 8am–5pm</li><li>hello@pawlour.example</li></ul></div>
+    <div><h4>Company</h4><ul><li>About</li><li>Gift cards</li><li>Careers</li><li>Privacy</li></ul></div>
+    <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Photos: Unsplash</span></div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var paw = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg>';
+
+  // Image fallback: designed placeholder if a photo can't load
+  document.querySelectorAll('.ph img').forEach(function(img){
+    var fb = document.createElement('div'); fb.className = 'fb'; fb.innerHTML = paw + '<span>' + img.alt + '</span>';
+    img.parentNode.insertBefore(fb, img);
+    function fail(){ img.classList.add('gone'); }
+    img.addEventListener('error', fail);
+    if (img.complete && img.naturalWidth === 0) fail();
+  });
+
+  // Split headline into animated characters
+  var delay = 0;
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    var text = el.textContent; el.textContent = '';
+    el.setAttribute('aria-hidden','true');
+    Array.from(text).forEach(function(c){
+      var s = document.createElement('span'); s.className = 'ch';
+      s.textContent = c === ' ' ? ' ' : c;
+      s.style.animationDelay = (delay += 0.045).toFixed(3) + 's';
+      el.appendChild(s);
+    });
+    delay += 0.15;
+  });
+
+  // Rotating word
+  var words = Array.from(document.querySelectorAll('.rot-box span'));
+  var i = 0;
+  if (!reduce && words.length > 1) {
+    setInterval(function(){
+      var cur = words[i], next = words[(i + 1) % words.length];
+      cur.classList.add('out');
+      next.classList.remove('out'); next.classList.add('in');
+      void next.offsetWidth; next.classList.remove('in');
+      setTimeout(function(){ cur.classList.remove('out'); cur.classList.add('in'); }, 560);
+      i = (i + 1) % words.length;
+    }, 2800);
+  }
+
+  // Soap bubbles
+  var host = document.getElementById('bubbles');
+  if (!reduce && host) {
+    for (var b = 0; b < 16; b++) {
+      var d = document.createElement('span'); d.className = 'bubble';
+      var size = 10 + Math.random() * 38;
+      d.style.width = d.style.height = size + 'px';
+      d.style.left = (Math.random() * 100) + '%';
+      d.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+      d.style.animationDuration = (9 + Math.random() * 10) + 's';
+      d.style.animationDelay = (-Math.random() * 18) + 's';
+      host.appendChild(d);
+    }
+  }
+
+  // Count-up numbers (final value already in the markup)
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return; io.unobserve(e.target);
+        var el = e.target, end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '', t0 = null;
+        function step(t){
+          if (!t0) t0 = t; var p = Math.min((t - t0) / 1400, 1), v = end * (1 - Math.pow(1 - p, 3));
+          el.textContent = v.toLocaleString('en-AU', {minimumFractionDigits: dec, maximumFractionDigits: dec}) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, {threshold: .6});
+    document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el); });
+  }
+
+  // Booking form (demo: no data leaves the page)
+  var form = document.getElementById('bookForm'), msg = document.getElementById('formMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.name.value.trim(), phone = form.phone.value.trim(), pet = form.pet.value.trim();
+    if (!name || !phone || !pet) { msg.textContent = 'Add your name, mobile and your pet’s name so we can confirm the booking.'; return; }
+    if (!/^(\+?61|0)4\d{2}\s?\d{3}\s?\d{3}$/.test(phone.replace(/\s+/g,' ').trim())) { msg.textContent = 'Enter an Australian mobile, for example 0412 345 678.'; return; }
+    msg.textContent = 'Thanks ' + name.split(' ')[0] + '. In the live site this request goes to the booking system and ' + pet + '’s slot is confirmed by SMS. (Demo: nothing was sent.)';
+    form.reset();
+  });
+})();
+</script>
