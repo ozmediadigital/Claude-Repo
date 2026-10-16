@@ -88,6 +88,32 @@ a{color:inherit}
 .ph{position:relative;overflow:hidden;background:radial-gradient(120% 80% at 50% 100%,var(--panel-2),var(--panel));border-radius:var(--r-lg)}
 .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
 .ph img.gone{display:none}
+/* Animated illustrations (placeholder art; swap for client photos) */
+.art{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:8% 6% 4%}
+.art svg{width:100%;height:100%;overflow:visible}
+.art [class^="a-"]{transform-box:fill-box}
+.a-blink{transform-origin:center;animation:blink 5s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.a-bob{transform-origin:center bottom;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4px) rotate(-1.2deg)}}
+.a-suds{transform-origin:center;animation:suds 2.2s ease-in-out infinite alternate}
+@keyframes suds{to{transform:scale(1.05)}}
+.a-bub{animation:bubUp linear infinite}
+@keyframes bubUp{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:1}100%{transform:translateY(-360px) scale(1.1);opacity:0}}
+.a-drip{animation:drip 1.6s ease-in infinite}
+@keyframes drip{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(70px);opacity:0}}
+.a-water path{stroke-dasharray:10 16;animation:water .45s linear infinite}
+@keyframes water{to{stroke-dashoffset:-26}}
+.a-twinkle{transform-origin:center;animation:twinkle 2.6s ease-in-out infinite}
+@keyframes twinkle{0%,100%{transform:scale(0) rotate(0);opacity:0}50%{transform:scale(1) rotate(45deg);opacity:1}}
+.a-steam{animation:steam 2.7s ease-out infinite;opacity:0}
+@keyframes steam{0%{transform:translateY(20px);opacity:0}40%{opacity:.9}100%{transform:translateY(-40px);opacity:0}}
+.a-fall{animation:fall 2s ease-in infinite}
+@keyframes fall{0%{transform:translate(0,0);opacity:1}100%{transform:translate(-14px,90px);opacity:0}}
+.a-hop{animation:hop 1.4s cubic-bezier(.3,0,.4,1) infinite}
+@keyframes hop{0%,100%{transform:translateY(0)}40%{transform:translateY(-22px)}60%{transform:translateY(0)}}
+.a-roll{transform-origin:center;animation:roll 2.8s ease-in-out infinite alternate}
+@keyframes roll{from{transform:translateX(0) rotate(0)}to{transform:translateX(-30px) rotate(-180deg)}}
 .ph .fb{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;color:var(--muted);font-size:.78rem;text-align:center;padding:16px;line-height:1.35}
 .ph .fb svg{width:38px;height:38px;color:var(--accent);opacity:.6}
 .ph .fb b{font-weight:600;color:var(--ink);font-size:.8rem}
@@ -346,7 +372,7 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     <div class="hero-media">
       <svg class="doodle doodle-1" viewBox="0 0 70 80" fill="none" aria-hidden="true"><path d="M8 4c10 20 40 22 54 58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M52 66h14M59 59v14" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:none;animation:none"/></svg>
       <div class="ph arch">
-        <img data-slot="Hero: freshly bathed pet in a towel on a sand backdrop" src="https://images.unsplash.com/photo-1733964659477-35534815c626?auto=format&fit=crop&w=900&h=1200&q=72" alt="Small white dog wrapped in a towel after a bath" loading="eager">
+        <div class="art" data-art="hero" role="img" aria-label="Illustration: golden spaniel wrapped in a towel with suds on its head"></div>
       </div>
       <div class="floor" aria-hidden="true"></div>
       <div class="tag tag-1"><span class="dot"></span> Next opening: Thu 9:30am</div>
@@ -388,11 +414,11 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
         <li><button role="tab" aria-selected="false" data-i="4"><span class="n">05</span><h3>Fluffed &amp; finished</h3><p>Cut, nails, ears and a bandana. You get a photo text the moment they're ready.</p><span class="prog"><i></i></span></button></li>
       </ul>
       <div class="story-stage" aria-live="polite">
-        <div class="ph frame on"><img data-slot="Your shoot · Step 1: dry, scruffy 'before' shot on the sand backdrop" src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&h=1000&q=72" alt="Puppy arriving at the studio before the groom" loading="lazy"><span class="frame-cap">01 · Arrive &amp; settle</span></div>
-        <div class="ph frame"><img data-slot="Your shoot · Step 2: wet coat, standing on the backdrop" src="https://images.unsplash.com/photo-1629030502047-b6ac6d4a78b6?auto=format&fit=crop&w=900&h=1000&q=72" alt="Wet terrier puppy during a warm rinse" loading="lazy"><span class="frame-cap">02 · Warm rinse</span></div>
-        <div class="ph frame"><img data-slot="Your shoot · Step 3: covered in suds, looking at camera" src="https://images.unsplash.com/photo-1597595735781-6a57fb8e3e3d?auto=format&fit=crop&w=900&h=1000&q=72" alt="Dog covered in shampoo suds" loading="lazy"><span class="frame-cap">03 · Suds up</span></div>
-        <div class="ph frame"><img data-slot="Your shoot · Step 4: wrapped in a taupe towel" src="https://images.unsplash.com/photo-1581887936036-3f4f7f0b6679?auto=format&fit=crop&w=900&h=1000&q=72" alt="Wet dog being dried with a towel" loading="lazy"><span class="frame-cap">04 · Towel cuddle</span></div>
-        <div class="ph frame"><img data-slot="Your shoot · Step 5: fluffed, bandana on, hero pose" src="https://images.unsplash.com/photo-1757169038235-490360e3fa7b?auto=format&fit=crop&w=900&h=1000&q=72" alt="Fluffy groomed puppy sitting on a tan blanket" loading="lazy"><span class="frame-cap">05 · Fluffed &amp; finished</span></div>
+        <div class="ph frame on"><div class="art" data-art="arrive" role="img" aria-label="Illustration: scruffy dog with muddy paws arriving"></div><span class="frame-cap">01 · Arrive &amp; settle</span></div>
+        <div class="ph frame"><div class="art" data-art="rinse" role="img" aria-label="Illustration: dog under a warm shower, dripping wet"></div><span class="frame-cap">02 · Warm rinse</span></div>
+        <div class="ph frame"><div class="art" data-art="suds" role="img" aria-label="Illustration: dog covered in shampoo suds"></div><span class="frame-cap">03 · Suds up</span></div>
+        <div class="ph frame"><div class="art" data-art="towel" role="img" aria-label="Illustration: dog wrapped in a warm towel"></div><span class="frame-cap">04 · Towel cuddle</span></div>
+        <div class="ph frame"><div class="art" data-art="fluffed" role="img" aria-label="Illustration: fluffed dog in a bandana with sparkles"></div><span class="frame-cap">05 · Fluffed &amp; finished</span></div>
       </div>
     </div>
   </section>
@@ -404,19 +430,19 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     </div>
     <div class="services">
       <article class="svc">
-        <div class="ph"><img data-slot="Full groom: finished doodle or cavoodle" src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=600&h=750&q=70" alt="Fluffy cockapoo running on grass" loading="lazy"></div>
+        <div class="ph"><div class="art" data-art="full" role="img" aria-label="Illustration: fluffy groomed dog with scissors snipping"></div></div>
         <div class="svc-body"><h3>Full groom</h3><p>Bath, blow-dry, breed or custom cut, nails, ears and a finishing spritz.</p><div class="svc-meta"><span>2–3 hrs</span><span>from $85</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img data-slot="Bath & tidy: short-coat breed, happy face" src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&h=750&q=70" alt="Jack Russell Terrier smiling" loading="lazy"></div>
+        <div class="ph"><div class="art" data-art="bath" role="img" aria-label="Illustration: dog in a bubble bath"></div></div>
         <div class="svc-body"><h3>Bath &amp; tidy</h3><p>Hydrobath, de-shed, face, feet and sanitary trim between full grooms.</p><div class="svc-meta"><span>60–90 min</span><span>from $55</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img data-slot="Puppy intro: pup with groomer's hands, treat" src="https://images.unsplash.com/photo-1592887302112-b87aca16ad2c?auto=format&fit=crop&w=600&h=750&q=70" alt="Small puppy on a towel" loading="lazy"></div>
+        <div class="ph"><div class="art" data-art="puppy" role="img" aria-label="Illustration: bouncing puppy with a ball"></div></div>
         <div class="svc-body"><h3>Puppy intro</h3><p>A short, treat-heavy first visit for pups 10–20 weeks. Builds trust for life.</p><div class="svc-meta"><span>45 min</span><span>$49</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img data-slot="Cat groom: calm long-hair cat after brushing" src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?auto=format&fit=crop&w=600&h=750&q=70" alt="Grey tabby cat looking calm" loading="lazy"></div>
+        <div class="ph"><div class="art" data-art="cat" role="img" aria-label="Illustration: grey tabby cat swishing its tail"></div></div>
         <div class="svc-body"><h3>Cat groom</h3><p>Quiet-room bath, dematting or lion cut. Cat-only mornings, no barking.</p><div class="svc-meta"><span>60–90 min</span><span>from $95</span></div></div>
       </article>
     </div>
@@ -553,7 +579,7 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     <div><h4>Services</h4><ul><li>Full groom</li><li>Bath &amp; tidy</li><li>Puppy intro</li><li>Cat groom</li></ul></div>
     <div><h4>Studio</h4><ul><li>Military Rd, Mosman NSW 2088</li><li>Tue–Sat · 8am–5pm</li><li>hello@pawlour.example</li></ul></div>
     <div><h4>Company</h4><ul><li>About</li><li>Gift cards</li><li>Careers</li><li>Privacy</li></ul></div>
-    <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Placeholder photos: Unsplash</span></div>
+    <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Illustrations are placeholders for client photography</span></div>
   </footer>
 </main>
 
@@ -567,15 +593,117 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var paw = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg>';
 
-  // Photo slots: if an image can't load, show the shot brief instead
-  document.querySelectorAll('.ph img').forEach(function(img){
-    var fb = document.createElement('div'); fb.className = 'fb';
-    var slot = img.dataset.slot || img.alt, parts = slot.split(':');
-    fb.innerHTML = paw + '<b>' + parts[0] + '</b><span>' + (parts.slice(1).join(':').trim() || '') + '</span>';
-    img.parentNode.insertBefore(fb, img);
-    function fail(){ img.classList.add('gone'); }
-    img.addEventListener('error', fail);
-    if (img.complete && img.naturalWidth === 0) fail();
+  // ── Animated placeholder illustrations ─────────────────────────────
+  // One golden spaniel ("Biscuit") drawn in code, dressed per scene, so the
+  // story reads as a single groom. Replace with real photos before launch.
+  var C = { coat:'#C8833F', light:'#EBC08B', ear:'#A9682C', wet:'#8B5428', wetLight:'#B57A45', wetEar:'#6E3F1C',
+            ink:'#2A221C', towel:'#A8957F', towelLt:'#BFAE98', towelDk:'#8C7A66', water:'#8FC1DB', accent:'#B4652A', foam:'#FFFFFF' };
+  function rot(a, cx, cy, dur, delay){ return '<animateTransform attributeName="transform" type="rotate" values="' + (-a) + ' ' + cx + ' ' + cy + ';' + a + ' ' + cx + ' ' + cy + ';' + (-a) + ' ' + cx + ' ' + cy + '" dur="' + dur + 's" begin="' + (delay || 0) + 's" repeatCount="indefinite"/>'; }
+  function bubbles(n, x0, x1, y0, cls){
+    var h = '';
+    for (var i = 0; i < n; i++) {
+      var x = x0 + Math.random() * (x1 - x0), r = 5 + Math.random() * 11, d = 3 + Math.random() * 4;
+      h += '<circle class="' + (cls || 'a-bub') + '" cx="' + x.toFixed(0) + '" cy="' + y0 + '" r="' + r.toFixed(1) + '" fill="rgba(255,255,255,.35)" stroke="rgba(255,255,255,.9)" stroke-width="1.5" style="animation-duration:' + d.toFixed(1) + 's;animation-delay:-' + (Math.random() * d).toFixed(1) + 's"/>';
+    }
+    return h;
+  }
+  function foam(pts){ return '<g class="a-suds">' + pts.map(function(p){ return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="' + C.foam + '" stroke="#EFE7DC" stroke-width="1.5"/>'; }).join('') + '</g>'; }
+  function sparkle(x, y, s, d){ return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')"><path class="a-twinkle" style="animation-delay:' + d + 's" d="M0 -12 L3 -3 L12 0 L3 3 L0 12 L-3 3 L-12 0 L-3 -3Z" fill="' + C.accent + '"/></g>'; }
+  function drip(x, y, d){ return '<g transform="translate(' + x + ' ' + y + ')"><path class="a-drip" style="animation-delay:' + d + 's" d="M0 0 q6 9 0 13 q-6 -4 0 -13z" fill="' + C.water + '"/></g>'; }
+
+  function dog(o){
+    o = o || {};
+    var coat = o.wet ? C.wet : C.coat, light = o.wet ? C.wetLight : C.light, ear = o.wet ? C.wetEar : C.ear, h = '';
+    h += '<ellipse cx="200" cy="452" rx="' + (o.towel ? 128 : 112) + '" ry="13" fill="#3C2A1A" opacity=".14"/>';
+    h += '<ellipse cx="200" cy="288" rx="50" ry="34" fill="' + coat + '"/>';
+    if (!o.towel) {
+      // tail
+      if (!o.noLegs) h += '<path d="M258 428 C298 420 318 392 312 356" stroke="' + coat + '" stroke-width="18" stroke-linecap="round" fill="none">' + rot(o.happy ? 16 : 8, 258, 428, o.happy ? .45 : 1.2) + '</path>';
+      // body, chest, legs, paws
+      h += '<path d="M140 300 C128 370 118 430 146 452 L254 452 C282 430 272 370 260 300 Z" fill="' + coat + '"/>';
+      h += '<path d="M168 300 C160 350 165 400 200 432 C235 400 240 350 232 300 Z" fill="' + light + '"/>';
+      if (!o.noLegs) h += '<rect x="160" y="378" width="30" height="74" rx="15" fill="' + coat + '"/><rect x="210" y="378" width="30" height="74" rx="15" fill="' + coat + '"/>';
+      if (!o.noLegs) h += '<ellipse cx="175" cy="450" rx="21" ry="10" fill="' + light + '"/><ellipse cx="225" cy="450" rx="21" ry="10" fill="' + light + '"/>';
+      if (o.wet) h += '<path d="M150 330 q8 30 2 60 M248 330 q-8 30 -2 60 M200 300 q6 20 0 40" stroke="' + C.wetEar + '" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>';
+      if (o.muddy) h += '<g fill="#6B4A2E" opacity=".75"><circle cx="166" cy="446" r="7"/><circle cx="182" cy="438" r="5"/><circle cx="230" cy="447" r="8"/><circle cx="214" cy="432" r="4"/><circle cx="172" cy="420" r="3"/><circle cx="238" cy="428" r="4"/></g>';
+    } else {
+      // towel wrap (Paw & Kin-style) with folds and terry band
+      h += '<path d="M104 452 C96 380 106 300 150 272 C180 256 220 256 250 272 C294 300 304 380 296 452 Z" fill="' + C.towel + '"/>';
+      h += '<path d="M118 330 C170 300 236 326 288 296 L292 334 C238 364 168 336 112 360 Z" fill="' + C.towelLt + '"/>';
+      h += '<path d="M150 300 C176 340 182 392 172 452 M246 340 C238 380 240 420 250 452" stroke="' + C.towelDk + '" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>';
+      h += '<path d="M106 420 C170 430 232 430 296 420" stroke="' + C.towelDk + '" stroke-width="8" fill="none" opacity=".35"/>';
+    }
+    // head (bobs gently)
+    h += '<g class="a-bob">';
+    h += '<ellipse cx="200" cy="215" rx="66" ry="62" fill="' + coat + '"/>';
+    if (o.scruffy) h += '<path d="M168 160 l6 -16 l5 13 l7 -18 l5 16 l7 -14 l4 15 l7 -12 l2 14" stroke="' + coat + '" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>';
+    if (o.fluffy) h += '<g fill="' + coat + '"><circle cx="178" cy="160" r="14"/><circle cx="200" cy="152" r="16"/><circle cx="222" cy="160" r="14"/></g>';
+    h += '<ellipse cx="200" cy="252" rx="34" ry="26" fill="' + light + '"/>';
+    h += '<path d="M187 238 Q200 231 213 238 Q209 251 200 253 Q191 251 187 238Z" fill="' + C.ink + '"/>';
+    if (o.happy) h += '<path d="M193 262 q7 22 14 0 z" fill="#E07C77"/>';
+    h += '<path d="M200 253 v7 M200 260 q-9 8 -16 2 M200 260 q9 8 16 2" stroke="' + C.ink + '" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    h += '<g class="a-blink"><circle cx="176" cy="210" r="8" fill="' + C.ink + '"/><circle cx="224" cy="210" r="8" fill="' + C.ink + '"/><circle cx="179" cy="207" r="2.5" fill="#fff"/><circle cx="227" cy="207" r="2.5" fill="#fff"/></g>';
+    if (o.wet) h += '<path d="M164 196 q12 -6 22 0 M214 196 q12 -6 22 0" stroke="' + C.ink + '" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    // floppy spaniel ears, swaying
+    var curlsL = o.fluffy ? '<circle cx="116" cy="250" r="14"/><circle cx="113" cy="278" r="14"/><circle cx="124" cy="304" r="14"/><circle cx="148" cy="312" r="12"/><circle cx="121" cy="222" r="12"/>' : '';
+    var curlsR = o.fluffy ? '<circle cx="284" cy="250" r="14"/><circle cx="287" cy="278" r="14"/><circle cx="276" cy="304" r="14"/><circle cx="252" cy="312" r="12"/><circle cx="279" cy="222" r="12"/>' : '';
+    h += '<g fill="' + ear + '"><path d="M146 180 C118 190 104 250 112 300 C118 330 150 332 158 302 C164 270 164 220 156 186 Z"/>' + curlsL + rot(4, 150, 184, 3.6) + '</g>';
+    h += '<g fill="' + ear + '"><path d="M254 180 C282 190 296 250 288 300 C282 330 250 332 242 302 C236 270 236 220 244 186 Z"/>' + curlsR + rot(4, 250, 184, 3.6, -1.8) + '</g>';
+    if (o.wet) h += drip(118, 318, 0) + drip(282, 318, .7) + drip(200, 276, 1.2) + drip(146, 330, 1.6);
+    if (o.bandana) h += '<path d="M146 268 Q200 292 254 268 L200 334 Z" fill="' + C.accent + '"/><g fill="rgba(255,255,255,.55)"><circle cx="186" cy="290" r="3"/><circle cx="212" cy="292" r="3"/><circle cx="200" cy="310" r="3"/><circle cx="176" cy="279" r="2.5"/><circle cx="224" cy="280" r="2.5"/></g>';
+    if (o.headFoam) h += foam([[184,160,15],[202,148,20],[221,158,15],[208,168,13],[193,170,10]]);
+    h += '</g>';
+    if (o.suds) h += foam([[140,318,18],[156,304,16],[160,328,13],[284,276,13],[292,292,12],[214,356,12],[229,366,15],[176,400,11]]);
+    return h;
+  }
+
+  function cat(){
+    var g = '#8F8B86', lt = '#C9C3BB', dk = '#5F5B57', h = '';
+    h += '<ellipse cx="200" cy="452" rx="104" ry="12" fill="#3C2A1A" opacity=".14"/>';
+    h += '<path d="M248 440 C320 440 336 380 306 330" stroke="' + g + '" stroke-width="18" stroke-linecap="round" fill="none">' + rot(10, 248, 440, 2.4) + '</path>';
+    h += '<path d="M146 300 C130 370 128 430 150 452 L250 452 C272 430 270 370 254 300 Z" fill="' + g + '"/><ellipse cx="200" cy="286" rx="52" ry="34" fill="' + g + '"/>';
+    h += '<path d="M172 310 C166 360 172 410 200 436 C228 410 234 360 228 310 Z" fill="' + lt + '"/>';
+    h += '<g stroke="' + dk + '" stroke-width="5" stroke-linecap="round" fill="none" opacity=".7"><path d="M150 340 q14 4 20 -6 M148 372 q14 4 20 -6 M252 340 q-14 4 -20 -6 M254 372 q-14 4 -20 -6"/></g>';
+    h += '<ellipse cx="176" cy="450" rx="20" ry="10" fill="' + lt + '"/><ellipse cx="224" cy="450" rx="20" ry="10" fill="' + lt + '"/>';
+    h += '<g class="a-bob"><path d="M140 170 L150 112 L188 156 Z M260 170 L250 112 L212 156 Z" fill="' + g + '"/><path d="M150 160 L155 128 L176 152 Z M250 160 L245 128 L224 152 Z" fill="#E7B9B0"/>';
+    h += '<ellipse cx="200" cy="215" rx="70" ry="60" fill="' + g + '"/>';
+    h += '<g stroke="' + dk + '" stroke-width="5" stroke-linecap="round" opacity=".75"><path d="M200 160 v22 M184 164 v16 M216 164 v16"/></g>';
+    h += '<ellipse cx="200" cy="246" rx="30" ry="20" fill="' + lt + '"/>';
+    h += '<g class="a-blink"><ellipse cx="174" cy="212" rx="11" ry="9" fill="#7DA35A"/><ellipse cx="226" cy="212" rx="11" ry="9" fill="#7DA35A"/><ellipse cx="174" cy="212" rx="3" ry="8" fill="' + C.ink + '"/><ellipse cx="226" cy="212" rx="3" ry="8" fill="' + C.ink + '"/></g>';
+    h += '<path d="M193 236 h14 l-7 8 z" fill="#D88C86"/><path d="M200 244 v5 M200 249 q-7 7 -13 2 M200 249 q7 7 13 2" stroke="' + C.ink + '" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
+    h += '<g stroke="' + C.ink + '" stroke-width="1.6" opacity=".5"><path d="M160 244 h-34 M160 252 l-32 8 M240 244 h34 M240 252 l32 8"/></g></g>';
+    return h;
+  }
+
+  var props = {
+    shower: '<path d="M60 18 H200 V44" stroke="#8C8279" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M164 44 H236 L226 66 H174 Z" fill="#9C9188"/>' +
+      '<g stroke="' + C.water + '" stroke-width="4" stroke-linecap="round" class="a-water">' + [180,190,200,210,220].map(function(x, i){ return '<path d="M' + x + ' 72 L' + (x + (x - 200) * .5) + ' 152" style="animation-delay:-' + (i * .13) + 's"/>'; }).join('') + '</g>',
+    scissors: '<g transform="translate(318 150) rotate(200) scale(1.35)"><g>' +
+      '<path d="M0 0 L70 -6 L70 1 Z" fill="#9AA0A6"/><circle cx="-16" cy="8" r="11" fill="none" stroke="' + C.ink + '" stroke-width="5"/>' + rot(9, 0, 0, .7) + '</g><g>' +
+      '<path d="M0 0 L70 6 L70 -1 Z" fill="#B8BDC2"/><circle cx="-16" cy="-8" r="11" fill="none" stroke="' + C.ink + '" stroke-width="5"/>' + rot(-9, 0, 0, .7) + '</g><circle r="4" fill="' + C.ink + '"/></g>' +
+      '<g fill="' + C.coat + '">' + [0, .5, 1, 1.4].map(function(d, i){ return '<circle class="a-fall" cx="' + (262 + i * 9) + '" cy="176" r="3" style="animation-delay:' + d + 's"/>'; }).join('') + '</g>',
+    steam: '<g stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" opacity=".9">' + [150, 200, 250].map(function(x, i){ return '<path class="a-steam" style="animation-delay:' + (i * .9) + 's" d="M' + x + ' 140 q-10 -14 0 -28 q10 -14 0 -28"/>'; }).join('') + '</g>',
+    tub: '<path d="M78 330 H322 V346 C322 414 280 450 200 450 S78 414 78 346 Z" fill="#F7F2EB" stroke="#D9CEC0" stroke-width="4"/><path d="M116 440 l-12 14 M284 440 l12 14" stroke="#B9AC9C" stroke-width="8" stroke-linecap="round"/>' +
+      foam([[96,326,16],[122,318,18],[150,324,14],[176,316,17],[226,318,16],[254,324,15],[280,318,18],[306,326,15]]),
+    ball: '<g class="a-roll"><circle cx="300" cy="432" r="20" fill="' + C.accent + '"/><path d="M282 424 q18 10 36 0" stroke="#FFF8F0" stroke-width="3" fill="none"/></g>'
+  };
+
+  var scenes = {
+    hero:    function(){ return dog({ towel:true, headFoam:true }) + bubbles(9, 90, 320, 440); },
+    arrive:  function(){ return dog({ scruffy:true, muddy:true, happy:true }); },
+    rinse:   function(){ return props.shower + dog({ wet:true }); },
+    suds:    function(){ return dog({ suds:true, headFoam:true }) + bubbles(12, 80, 320, 450); },
+    towel:   function(){ return props.steam + dog({ towel:true }); },
+    fluffed: function(){ return dog({ fluffy:true, bandana:true, happy:true }) + sparkle(96, 150, 1.2, 0) + sparkle(316, 200, 1, .8) + sparkle(120, 330, .8, 1.5) + sparkle(300, 110, .7, 2.1); },
+    full:    function(){ return dog({ fluffy:true, bandana:true }) + props.scissors; },
+    bath:    function(){ return dog({ headFoam:true, noLegs:true }) + props.tub + bubbles(10, 90, 310, 330); },
+    puppy:   function(){ return '<g class="a-hop"><g transform="translate(44 92) scale(.78)">' + dog({ happy:true }) + '</g></g>' + props.ball; },
+    cat:     function(){ return cat() + sparkle(110, 160, .9, .3) + sparkle(300, 140, .7, 1.4); }
+  };
+  document.querySelectorAll('.art').forEach(function(el){
+    var make = scenes[el.dataset.art]; if (!make) return;
+    el.innerHTML = '<svg viewBox="0 0 400 480" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + make() + '</svg>';
+    if (reduce) { var s = el.querySelector('svg'); if (s.pauseAnimations) s.pauseAnimations(); }
   });
 
   // Animated headline: split into characters
