@@ -5,40 +5,40 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Yellowtail&display=swap">
 <style>
-/* Layout: soft fog canvas, oversized animated headline left, stacked photo cards right; modular rounded panels below, like a well-kept salon counter. */
+/* Layout: seamless studio-backdrop canvas (sand sweep, soft floor shadow); oversized animated headline left, arched hero photo right with suds; then a five-frame "bath story" sequence as the signature section. */
 :root{
-  --bg:#ECEEEB;        /* fog */
-  --panel:#F7F8F6;     /* towel white */
-  --panel-2:#E1E5E0;   /* tile */
-  --ink:#151816;
-  --muted:#5C635E;
-  --line:#CDD3CD;
-  --accent:#2E6B5C;    /* eucalyptus */
-  --accent-ink:#F4F7F5;
-  --foam:#CFE3DC;      /* soap foam */
-  --shadow:0 24px 60px -28px rgba(21,24,22,.35);
-  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --f-body:"Instrument Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --f-script:"Yellowtail", "Brush Script MT", cursive;
-  --r-lg:28px; --r-md:18px; --r-sm:999px;
+  --bg:#EFE6DA;        /* studio sweep */
+  --panel:#F8F3EC;     /* towel white */
+  --panel-2:#E5D9C9;   /* taupe towel */
+  --ink:#2A221C;       /* cocoa */
+  --muted:#76685C;
+  --line:#D6C8B6;
+  --accent:#B4652A;    /* spaniel coat */
+  --accent-ink:#FFF8F0;
+  --suds:#FFFFFF;
+  --shadow:0 30px 60px -32px rgba(60,40,20,.45);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --f-script:"Yellowtail","Brush Script MT",cursive;
+  --r-lg:30px; --r-md:20px; --r-pill:999px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#121513; --panel:#1A1E1C; --panel-2:#222826; --ink:#EDF1EE; --muted:#A3ACA6;
-    --line:#2F3733; --accent:#7CC4AF; --accent-ink:#0F1A16; --foam:#24413A;
-    --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark;
+    --bg:#1A1512; --panel:#231D18; --panel-2:#2E2620; --ink:#F2E9DE; --muted:#B3A595;
+    --line:#3A3028; --accent:#E39A5E; --accent-ink:#1A1512; --suds:#F2E9DE;
+    --shadow:0 30px 60px -32px rgba(0,0,0,.75); color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#121513; --panel:#1A1E1C; --panel-2:#222826; --ink:#EDF1EE; --muted:#A3ACA6;
-  --line:#2F3733; --accent:#7CC4AF; --accent-ink:#0F1A16; --foam:#24413A;
-  --shadow:0 24px 60px -28px rgba(0,0,0,.7); color-scheme:dark;
+  --bg:#1A1512; --panel:#231D18; --panel-2:#2E2620; --ink:#F2E9DE; --muted:#B3A595;
+  --line:#3A3028; --accent:#E39A5E; --accent-ink:#1A1512; --suds:#F2E9DE;
+  --shadow:0 30px 60px -32px rgba(0,0,0,.75); color-scheme:dark;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
-  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
 .wrap{max-width:1180px;margin:0 auto}
 h1,h2,h3{font-family:var(--f-display);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.02em}
@@ -47,37 +47,34 @@ h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
 p{margin:0}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:600}
 .lede{color:var(--muted);max-width:52ch}
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:.6em;border:0;cursor:pointer;font:600 .95rem var(--f-body);
-  padding:.9em 1.4em;border-radius:var(--r-sm);text-decoration:none;transition:transform .2s ease, background .2s ease}
+.btn{display:inline-flex;align-items:center;gap:.6em;border:0;cursor:pointer;font:600 .95rem var(--f-body);padding:.95em 1.5em;border-radius:14px;text-decoration:none;transition:transform .2s ease, box-shadow .2s ease}
 .btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--ink);color:var(--bg)}
-.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-primary{background:var(--ink);color:var(--bg);box-shadow:0 12px 24px -12px rgba(42,34,28,.6)}
+.btn-ghost{background:var(--panel);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 .btn .arr{display:inline-block;transition:transform .2s ease}
 .btn:hover .arr{transform:translate(2px,-2px)}
 
-/* Nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
-.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:18px}
-.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.92rem}
-.nav ul a{text-decoration:none;opacity:.8}
-.nav ul a:hover{opacity:1}
+/* Nav: pill menu */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
 .logo{font-family:var(--f-script);font-size:2rem;text-decoration:none;line-height:1}
-.nav-r{display:flex;justify-content:flex-end;align-items:center;gap:22px}
-.nav .btn{padding:.65em 1.1em;font-size:.88rem}
+.nav-pill{display:flex;gap:4px;list-style:none;margin:0;padding:5px;background:var(--panel);border-radius:var(--r-pill);box-shadow:inset 0 0 0 1px var(--line)}
+.nav-pill a{display:block;padding:.45em 1em;border-radius:var(--r-pill);text-decoration:none;font-size:.9rem;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
+.nav-pill a:hover{background:var(--panel-2);color:var(--ink)}
+.nav .btn{padding:.7em 1.15em;font-size:.88rem;border-radius:var(--r-pill)}
 
 /* Hero */
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-block:36px 56px;position:relative}
-.hero-copy{display:grid;gap:26px;position:relative;z-index:2;min-width:0}
-.headline{font-size:clamp(3.2rem,9.4vw,7.6rem);font-weight:800;letter-spacing:-.045em;line-height:.9}
-.headline .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:28px 64px;position:relative}
+.hero-copy{display:grid;gap:24px;position:relative;z-index:2;min-width:0}
+.headline{font-size:clamp(3.2rem,9.2vw,7.4rem);font-weight:800;letter-spacing:-.045em;line-height:.9}
+.headline .line{display:block;overflow:hidden;padding-bottom:.07em}
 .headline .ch{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) backwards}
-.headline .script{font-family:var(--f-script);font-weight:400;letter-spacing:0;color:var(--accent);font-size:.82em}
+.headline .script{font-family:var(--f-script);font-weight:400;letter-spacing:0;color:var(--accent);font-size:.84em}
 @keyframes rise{from{transform:translateY(105%) rotate(6deg);opacity:0}to{transform:none;opacity:1}}
-.rotator{font-family:var(--f-display);font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:400;display:flex;flex-wrap:wrap;gap:.35em;align-items:baseline}
+.rotator{font-family:var(--f-display);font-size:clamp(1.25rem,2.4vw,1.7rem);display:flex;flex-wrap:wrap;gap:.35em;align-items:baseline}
 .rot-box{position:relative;display:inline-grid;height:1.3em;overflow:hidden;vertical-align:bottom}
 .rot-box span{grid-area:1/1;font-weight:600;color:var(--accent);white-space:nowrap;transition:transform .55s cubic-bezier(.7,0,.2,1), opacity .55s}
 .rot-box span.out{transform:translateY(-110%);opacity:0}
@@ -85,37 +82,56 @@ a{color:inherit}
 .rot-box::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--accent);transform-origin:left;animation:underline 2.8s ease-in-out infinite}
 @keyframes underline{0%{transform:scaleX(0)}40%,80%{transform:scaleX(1)}100%{transform:scaleX(0);transform-origin:right}}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
-.proof{display:flex;flex-wrap:wrap;gap:28px;align-items:center;padding-top:8px}
-.proof-item{display:flex;gap:12px;align-items:center}
-.proof-ic{width:44px;height:44px;border-radius:12px;background:var(--panel);display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line)}
-.proof b{font-family:var(--f-display);font-size:1.5rem;display:block;line-height:1;font-variant-numeric:tabular-nums}
-.proof small{color:var(--muted);font-size:.82rem}
 
-.hero-media{position:relative;min-height:520px;min-width:0}
-.ph{position:relative;overflow:hidden;background:linear-gradient(150deg,var(--foam),var(--panel-2));border-radius:var(--r-lg)}
+/* Photo frames with designed fallback */
+.ph{position:relative;overflow:hidden;background:radial-gradient(120% 80% at 50% 100%,var(--panel-2),var(--panel));border-radius:var(--r-lg)}
 .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
-.ph .fb{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;color:var(--accent);font-size:.8rem;text-align:center;padding:12px}
-.ph .fb svg{width:42px;height:42px;opacity:.55}
 .ph img.gone{display:none}
-.hm-main{position:absolute;right:0;top:0;width:78%;height:100%;max-height:560px;box-shadow:var(--shadow);animation:floaty 7s ease-in-out infinite}
-.hm-small{position:absolute;left:0;bottom:40px;width:44%;aspect-ratio:3/4;max-width:100%;border:6px solid var(--panel);box-shadow:var(--shadow);z-index:3;animation:floaty 7s ease-in-out -3.5s infinite}
-.tag{position:absolute;z-index:4;background:var(--panel);border-radius:var(--r-sm);padding:.55em 1em;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);display:flex;align-items:center;gap:.5em}
-.tag .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite}
-.tag-1{right:16px;top:22px}
-.tag-2{left:6%;top:18%}
+.ph .fb{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;color:var(--muted);font-size:.78rem;text-align:center;padding:16px;line-height:1.35}
+.ph .fb svg{width:38px;height:38px;color:var(--accent);opacity:.6}
+.ph .fb b{font-weight:600;color:var(--ink);font-size:.8rem}
+
+.hero-media{position:relative;min-height:560px;min-width:0}
+.arch{position:absolute;right:4%;top:0;width:76%;height:94%;border-radius:999px 999px var(--r-lg) var(--r-lg);box-shadow:var(--shadow)}
+.floor{position:absolute;left:10%;right:0;bottom:0;height:40px;background:radial-gradient(50% 50% at 50% 50%,rgba(60,40,20,.22),transparent 70%);filter:blur(4px)}
+.pill-proof{position:absolute;left:0;bottom:16%;z-index:4;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 10px;border-radius:var(--r-pill);
+  background:color-mix(in srgb,var(--panel) 78%,transparent);backdrop-filter:blur(12px);box-shadow:var(--shadow);animation:floaty 6s ease-in-out infinite}
+.avatars{display:flex}
+.avatars span{width:34px;height:34px;border-radius:50%;border:2px solid var(--panel);margin-left:-10px;display:grid;place-items:center;font-size:.72rem;font-weight:600;color:var(--accent-ink)}
+.avatars span:first-child{margin-left:0}
+.pill-proof b{font-family:var(--f-display);font-size:1.05rem;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.pill-proof small{color:var(--muted);font-size:.78rem}
+.tag{position:absolute;z-index:4;background:var(--panel);border-radius:var(--r-pill);padding:.55em 1em;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);display:flex;align-items:center;gap:.5em;animation:floaty 7s ease-in-out -3s infinite}
+.tag .dot{width:8px;height:8px;border-radius:50%;background:#3E9B6B;animation:pulse 1.8s ease-in-out infinite}
+.tag-1{right:0;top:14%}
+.doodle{position:absolute;z-index:3;color:var(--ink);opacity:.7;pointer-events:none}
+.doodle-1{left:6%;top:6%;width:70px}
+.doodle-2{right:-6px;bottom:22%;width:56px}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.doodle path{stroke-dasharray:4 7;animation:dash 6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-110}}
 
 /* Soap bubbles */
-.bubbles{position:absolute;inset:-40px -20px 0;pointer-events:none;z-index:1;overflow:hidden}
+.bubbles{position:absolute;inset:-40px -20px 0;pointer-events:none;z-index:3;overflow:hidden}
 .bubble{position:absolute;bottom:-60px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.15) 35%,transparent 60%),radial-gradient(circle,transparent 58%,color-mix(in srgb,var(--accent) 35%,transparent) 70%,transparent 72%);
-  border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);animation:bubble linear infinite}
-@keyframes bubble{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.9}100%{transform:translate(var(--dx),-720px) scale(1);opacity:0}}
+  background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95),rgba(255,255,255,.25) 30%,transparent 55%),radial-gradient(circle at 70% 75%,rgba(255,200,230,.35),transparent 45%),radial-gradient(circle,transparent 60%,rgba(255,255,255,.75) 72%,transparent 74%);
+  box-shadow:inset 0 0 6px rgba(255,255,255,.6);animation:bubble linear infinite}
+@keyframes bubble{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.95}100%{transform:translate(var(--dx),-740px) scale(1);opacity:0}}
+
+/* Service bubbles (icon row) */
+.svc-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:8px 0}
+.svc-ic{display:grid;justify-items:center;gap:12px;text-align:center;text-decoration:none}
+.bub{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;color:var(--ink);
+  background:radial-gradient(circle at 32% 26%,var(--suds) 0 12%,transparent 30%),radial-gradient(circle at 50% 50%,var(--panel) 55%,var(--panel-2) 100%);
+  box-shadow:inset -6px -10px 18px rgba(180,101,42,.14),inset 6px 6px 12px rgba(255,255,255,.7),0 18px 30px -18px rgba(60,40,20,.5);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.svc-ic:hover .bub{transform:translateY(-6px) scale(1.06)}
+.bub svg{width:38px;height:38px}
+.svc-ic span{font-weight:600;font-size:.95rem}
 
 /* Marquee */
-.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
-.marquee-track{display:flex;gap:44px;width:max-content;animation:marq 32s linear infinite;font-family:var(--f-display);font-size:1.35rem;font-weight:600}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;margin-top:56px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
+.marquee-track{display:flex;gap:44px;width:max-content;animation:marq 34s linear infinite;font-family:var(--f-display);font-size:1.35rem;font-weight:600}
 .marquee-track span{display:flex;align-items:center;gap:44px;white-space:nowrap}
 .marquee-track span::after{content:"✦";color:var(--accent);font-size:.8em}
 @keyframes marq{to{transform:translateX(-50%)}}
@@ -124,11 +140,33 @@ section{padding-block:88px}
 .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:44px}
 .sec-head > *{min-width:0}
 
+/* Bath story */
+.story{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:stretch}
+.story-steps{display:grid;gap:8px;align-content:start;list-style:none;margin:0;padding:0}
+.story-steps button{all:unset;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;padding:18px 20px;border-radius:var(--r-md);transition:background .3s}
+.story-steps button:focus-visible{outline:2px solid var(--accent)}
+.story-steps .n{grid-row:span 2;font-family:var(--f-display);font-weight:800;font-size:1.6rem;color:var(--line);line-height:1;transition:color .3s;font-variant-numeric:tabular-nums}
+.story-steps h3{font-size:1.2rem}
+.story-steps p{color:var(--muted);font-size:.92rem;display:none}
+.story-steps button[aria-selected="true"]{background:var(--panel)}
+.story-steps button[aria-selected="true"] .n{color:var(--accent)}
+.story-steps button[aria-selected="true"] p{display:block}
+.prog{grid-column:2;height:3px;border-radius:3px;background:var(--line);overflow:hidden;display:none;margin-top:6px}
+.story-steps button[aria-selected="true"] .prog{display:block}
+.prog i{display:block;height:100%;width:0;background:var(--accent)}
+.story-steps button[aria-selected="true"] .prog i{animation:fill 4.5s linear forwards}
+.story.paused .prog i{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.story-stage{position:relative;min-height:540px;border-radius:var(--r-lg);overflow:hidden;background:radial-gradient(120% 70% at 50% 100%,var(--panel-2),var(--bg))}
+.frame{position:absolute;inset:0;opacity:0;transform:scale(1.04);transition:opacity .8s ease,transform 1.2s ease;border-radius:0}
+.frame.on{opacity:1;transform:none}
+.frame-cap{position:absolute;left:20px;bottom:20px;z-index:3;background:var(--panel);border-radius:var(--r-pill);padding:.5em 1em;font-size:.84rem;font-weight:600;box-shadow:var(--shadow)}
+
 /* Services */
 .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .svc{background:var(--panel);border-radius:var(--r-lg);padding:10px 10px 20px;display:grid;gap:14px;align-content:start;transition:transform .3s ease}
 .svc:hover{transform:translateY(-6px)}
-.svc .ph{aspect-ratio:1/1;border-radius:var(--r-md)}
+.svc .ph{aspect-ratio:4/5;border-radius:999px 999px var(--r-md) var(--r-md)}
 .svc .ph img{transition:transform .6s ease}
 .svc:hover .ph img{transform:scale(1.06)}
 .svc-body{padding-inline:10px;display:grid;gap:6px}
@@ -136,92 +174,90 @@ section{padding-block:88px}
 .svc-meta{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;padding-top:6px;font-variant-numeric:tabular-nums}
 .svc-meta span:last-child{color:var(--accent)}
 
-/* Process */
-.process{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
-.process .ph{min-height:420px}
-.steps{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
-.step{background:var(--panel-2);border-radius:var(--r-md);padding:22px;display:grid;gap:10px;align-content:start}
-.step-n{font-family:var(--f-display);font-size:.85rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
-.step p{color:var(--muted);font-size:.92rem}
-.process-copy{grid-column:1/-1;display:grid;gap:12px;margin-bottom:8px}
-
 /* Pricing */
 .price-wrap{background:var(--panel);border-radius:var(--r-lg);padding:clamp(20px,4vw,44px);box-shadow:var(--shadow)}
 .price-table{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:560px}
 th,td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--line)}
-th{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+th{font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
 td:first-child{font-family:var(--f-display);font-weight:600;font-size:1.1rem}
 td small{display:block;font-family:var(--f-body);font-weight:400;color:var(--muted);font-size:.82rem}
 td.p{font-weight:600}
 tr:last-child td{border-bottom:0}
 .price-notes{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.chip{background:var(--panel-2);border-radius:var(--r-sm);padding:.45em .95em;font-size:.83rem}
+.chip{background:var(--panel-2);border-radius:var(--r-pill);padding:.45em .95em;font-size:.83rem}
 
 /* Why */
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .why-card{border-radius:var(--r-lg);padding:28px;display:grid;gap:12px;align-content:start;background:var(--panel)}
-.why-card.feature{background:var(--accent);color:var(--accent-ink)}
-.why-card.feature p{color:inherit;opacity:.85}
+.why-card.feature{background:var(--ink);color:var(--bg)}
+.why-card.feature p{color:inherit;opacity:.8}
 .why-card p{color:var(--muted);font-size:.95rem}
-.big-num{font-family:var(--f-display);font-size:3.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.big-num{font-family:var(--f-display);font-size:3.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
 
 /* Reviews */
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.review{background:var(--panel);border-radius:var(--r-lg);padding:26px;display:grid;gap:16px;align-content:space-between}
-.review q{font-family:var(--f-display);font-size:1.12rem;line-height:1.4;quotes:"“" "”"}
+.review{background:var(--panel);border-radius:var(--r-lg);padding:26px;display:grid;gap:16px;align-content:space-between;margin:0}
+.review q{font-family:var(--f-display);font-size:1.12rem;line-height:1.4}
 .review footer{font-size:.85rem;color:var(--muted)}
 .stars{color:var(--accent);letter-spacing:2px}
 
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--panel);border-radius:var(--r-md);padding:0 22px}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;color:var(--accent);transition:transform .3s;line-height:1}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding-bottom:18px;max-width:68ch}
+
 /* Booking */
-.book{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--ink);color:var(--bg);border-radius:var(--r-lg);padding:clamp(24px,5vw,56px);position:relative;overflow:hidden}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--ink);color:var(--bg);border-radius:var(--r-lg);padding:clamp(24px,5vw,56px);position:relative;overflow:hidden}
 .book > *{min-width:0;position:relative;z-index:2}
 .book h2{color:var(--bg)}
-.book .lede{color:color-mix(in srgb,var(--bg) 70%,transparent)}
 form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 label{display:grid;gap:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em}
 input,select{font:500 .95rem var(--f-body);padding:.85em 1em;border-radius:14px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);width:100%}
-select option{color:#151816}
+input::placeholder{color:color-mix(in srgb,var(--bg) 45%,transparent)}
+select option{color:#2A221C;background:#F8F3EC}
 .full{grid-column:1/-1}
 .book .btn-primary{background:var(--accent);color:var(--accent-ink);justify-content:center}
-.form-msg{grid-column:1/-1;font-size:.9rem;min-height:1.4em;color:var(--foam)}
-.book-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
-.book-list li{display:flex;gap:10px;align-items:center}
-.book-list li::before{content:"";width:18px;height:18px;border-radius:50%;flex:none;background:var(--accent);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat, linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude}
+.form-msg{grid-column:1/-1;font-size:.9rem;min-height:1.4em;color:color-mix(in srgb,var(--bg) 80%,var(--accent))}
+.book-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;color:color-mix(in srgb,var(--bg) 80%,transparent)}
+.book-list li{display:flex;gap:10px;align-items:baseline}
+.book-list li::before{content:"✓";color:var(--accent);font-weight:700}
 
-/* Footer */
 footer.site{padding-block:56px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;border-top:1px solid var(--line);margin-top:40px}
-footer.site h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+footer.site h4{font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
 footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.92rem}
 footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
 .legal{grid-column:1/-1;font-size:.8rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px}
 
-/* Responsive */
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
-  .hero-media{min-height:440px}
+  .hero-media{min-height:500px}
+  .story{grid-template-columns:1fr}
+  .story-stage{min-height:440px;order:-1}
   .services{grid-template-columns:repeat(2,1fr)}
-  .process,.book{grid-template-columns:1fr}
+  .book{grid-template-columns:1fr}
   .why,.reviews{grid-template-columns:1fr 1fr}
   .why-card.feature{grid-column:1/-1}
   .reviews .review:last-child{grid-column:1/-1}
   footer.site{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
-  .nav-in{grid-template-columns:auto 1fr}
-  .nav-l{display:none}
-  .nav-r ul{display:none}
+  .nav-pill{display:none}
   .sec-head{grid-template-columns:1fr}
   section{padding-block:60px}
+  .svc-icons{grid-template-columns:repeat(2,1fr);row-gap:28px}
 }
 @media (max-width:560px){
-  .services,.steps,.why,.reviews,form{grid-template-columns:1fr}
+  .services,.why,.reviews,form{grid-template-columns:1fr}
   .reviews .review:last-child{grid-column:auto}
-  .hero-media{min-height:380px}
-  .hm-main{width:84%}
-  .hm-small{width:46%;bottom:20px}
-  .tag-2{display:none}
+  .hero-media{min-height:420px}
+  .arch{width:86%;right:0}
+  .doodle-2{display:none}
+  .story-steps button{padding:14px}
   footer.site{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion: reduce){
@@ -232,26 +268,22 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
 
 <header class="nav">
   <div class="wrap nav-in">
-    <ul class="nav-l">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#process">How it works</a></li>
-    </ul>
     <a class="logo" href="#top" aria-label="Pawlour home">Pawlour</a>
-    <div class="nav-r">
-      <ul>
-        <li><a href="#reviews">Reviews</a></li>
-      </ul>
-      <a class="btn btn-primary" href="#book">Book a groom <span class="arr" aria-hidden="true">↗</span></a>
-    </div>
+    <ul class="nav-pill">
+      <li><a href="#story">The groom</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Prices</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#book">Book a groom <span class="arr" aria-hidden="true">↗</span></a>
   </div>
 </header>
 
 <main class="wrap" id="top">
-  <section class="hero" style="padding-top:28px">
+  <section class="hero">
     <div class="bubbles" aria-hidden="true" id="bubbles"></div>
     <div class="hero-copy">
-      <span class="eyebrow">Dog &amp; cat grooming studio · Mosman, Sydney</span>
+      <span class="eyebrow">Professional pet grooming · Mosman, Sydney</span>
       <h1 class="headline" aria-label="Fresh coat. Calm pet.">
         <span class="line" data-split>Fresh coat.</span>
         <span class="line"><span class="script" data-split>Calm pet.</span></span>
@@ -267,100 +299,99 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
       </p>
       <p class="lede">One pet on the table at a time, no cage drying, and a photo text when they're ready. Full grooms, bath and tidy, puppy intros and cat grooms from $55.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#book">Book in 60 seconds <span class="arr" aria-hidden="true">↗</span></a>
-        <a class="btn btn-ghost" href="#pricing">See prices</a>
-      </div>
-      <div class="proof">
-        <div class="proof-item">
-          <div class="proof-ic" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
-          </div>
-          <div><b data-count="4.9" data-dec="1">4.9</b><small>from 612 Google reviews</small></div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-ic" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg>
-          </div>
-          <div><b data-count="8400" data-suffix="+">8,400+</b><small>grooms since 2019</small></div>
-        </div>
+        <a class="btn btn-primary" href="#book">Book appointment <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="#story">See a groom, start to finish</a>
       </div>
     </div>
 
     <div class="hero-media">
-      <div class="ph hm-main">
-        <img src="https://images.unsplash.com/photo-1772437883387-8076cf660c65?auto=format&fit=crop&w=900&h=1100&q=70" alt="Freshly groomed Bichon Frise wearing a blue bandana and tie" loading="eager">
+      <svg class="doodle doodle-1" viewBox="0 0 70 80" fill="none" aria-hidden="true"><path d="M8 4c10 20 40 22 54 58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M52 66h14M59 59v14" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:none;animation:none"/></svg>
+      <div class="ph arch">
+        <img data-slot="Hero: freshly bathed pet in a towel on a sand backdrop" src="https://images.unsplash.com/photo-1733964659477-35534815c626?auto=format&fit=crop&w=900&h=1200&q=72" alt="Small white dog wrapped in a towel after a bath" loading="eager">
       </div>
-      <div class="ph hm-small">
-        <img src="https://images.unsplash.com/photo-1570888234661-a2428afad010?auto=format&fit=crop&w=520&h=700&q=70" alt="White Japanese Spitz with a fluffed, blow-dried coat" loading="eager">
-      </div>
+      <div class="floor" aria-hidden="true"></div>
       <div class="tag tag-1"><span class="dot"></span> Next opening: Thu 9:30am</div>
-      <div class="tag tag-2">🛁 Hydrobath · blow-dry · nails</div>
+      <div class="pill-proof">
+        <div class="avatars" aria-hidden="true">
+          <span style="background:#B4652A">SK</span><span style="background:#7D8F69">JP</span><span style="background:#8C6A8F">ML</span><span style="background:#2A221C">+</span>
+        </div>
+        <div><b data-count="2400" data-suffix="+">2,400+</b><small>happy local pets · 4.9★ Google</small></div>
+      </div>
+      <svg class="doodle doodle-2" viewBox="0 0 56 56" fill="none" aria-hidden="true"><path d="M28 4v12M28 40v12M4 28h12M40 28h12" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="stroke-dasharray:none"/></svg>
     </div>
   </section>
 
+  <nav class="svc-icons" aria-label="Services">
+    <a class="svc-ic" href="#services">
+      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span>
+      <span>Full groom</span>
+    </a>
+    <a class="svc-ic" href="#services">
+      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><circle cx="15" cy="6" r="1.2"/><circle cx="18.5" cy="8.5" r="1"/><circle cx="14" cy="9.5" r=".8"/></svg></span>
+      <span>Bath &amp; tidy</span>
+    </a>
+    <a class="svc-ic" href="#services">
+      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg></span>
+      <span>Puppy intro</span>
+    </a>
+    <a class="svc-ic" href="#services">
+      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l3 4h8l3-4v9a7 7 0 0 1-14 0z"/><path d="M9.5 13h.01M14.5 13h.01M11 16h2M3 15h3M3 18l3-1M21 15h-3M21 18l-3-1"/></svg></span>
+      <span>Cat groom</span>
+    </a>
+  </nav>
+
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Full groom</span><span>Bath &amp; tidy</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Puppy intro</span><span>Cat lion cut</span>
-      <span>Full groom</span><span>Bath &amp; tidy</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Puppy intro</span><span>Cat lion cut</span>
+      <span>Warm hydrobath</span><span>Hand blow-dry</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Blueberry facial</span><span>Cat lion cut</span>
+      <span>Warm hydrobath</span><span>Hand blow-dry</span><span>Hand scissoring</span><span>De-shedding</span><span>Nail grind</span><span>Ear clean</span><span>Blueberry facial</span><span>Cat lion cut</span>
     </div>
   </div>
 
-  <section id="services">
+  <section id="story">
+    <div class="sec-head">
+      <div style="display:grid;gap:12px"><span class="eyebrow">A groom, start to finish</span><h2>From muddy paws to fluffed and photo-ready</h2></div>
+      <p class="lede">Every pet gets the same unhurried routine, with breaks whenever they need one. Here's what happens behind the studio door.</p>
+    </div>
+    <div class="story" id="storyEl">
+      <ul class="story-steps" role="tablist" aria-label="Grooming steps">
+        <li><button role="tab" aria-selected="true" data-i="0"><span class="n">01</span><h3>Arrive &amp; settle</h3><p>Sniff around, treats, a coat and skin check. We agree the cut with you before anything starts.</p><span class="prog"><i></i></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="1"><span class="n">02</span><h3>Warm rinse</h3><p>Body-temperature water with a quiet, low-pressure hydrobath. No blasting, no cold shocks.</p><span class="prog"><i></i></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="2"><span class="n">03</span><h3>Suds up</h3><p>pH-balanced, soap-free shampoo matched to the coat. Oatmeal for itchy skin, de-shed for doubles.</p><span class="prog"><i></i></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="3"><span class="n">04</span><h3>Towel cuddle</h3><p>Warm towels first, then a hand blow-dry on low heat. Never a cage dryer.</p><span class="prog"><i></i></span></button></li>
+        <li><button role="tab" aria-selected="false" data-i="4"><span class="n">05</span><h3>Fluffed &amp; finished</h3><p>Cut, nails, ears and a bandana. You get a photo text the moment they're ready.</p><span class="prog"><i></i></span></button></li>
+      </ul>
+      <div class="story-stage" aria-live="polite">
+        <div class="ph frame on"><img data-slot="Your shoot · Step 1: dry, scruffy 'before' shot on the sand backdrop" src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&h=1000&q=72" alt="Puppy arriving at the studio before the groom" loading="lazy"><span class="frame-cap">01 · Arrive &amp; settle</span></div>
+        <div class="ph frame"><img data-slot="Your shoot · Step 2: wet coat, standing on the backdrop" src="https://images.unsplash.com/photo-1629030502047-b6ac6d4a78b6?auto=format&fit=crop&w=900&h=1000&q=72" alt="Wet terrier puppy during a warm rinse" loading="lazy"><span class="frame-cap">02 · Warm rinse</span></div>
+        <div class="ph frame"><img data-slot="Your shoot · Step 3: covered in suds, looking at camera" src="https://images.unsplash.com/photo-1597595735781-6a57fb8e3e3d?auto=format&fit=crop&w=900&h=1000&q=72" alt="Dog covered in shampoo suds" loading="lazy"><span class="frame-cap">03 · Suds up</span></div>
+        <div class="ph frame"><img data-slot="Your shoot · Step 4: wrapped in a taupe towel" src="https://images.unsplash.com/photo-1581887936036-3f4f7f0b6679?auto=format&fit=crop&w=900&h=1000&q=72" alt="Wet dog being dried with a towel" loading="lazy"><span class="frame-cap">04 · Towel cuddle</span></div>
+        <div class="ph frame"><img data-slot="Your shoot · Step 5: fluffed, bandana on, hero pose" src="https://images.unsplash.com/photo-1757169038235-490360e3fa7b?auto=format&fit=crop&w=900&h=1000&q=72" alt="Fluffy groomed puppy sitting on a tan blanket" loading="lazy"><span class="frame-cap">05 · Fluffed &amp; finished</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:0">
     <div class="sec-head">
       <h2>Find the groom that fits your pet</h2>
       <p class="lede">Every visit starts with a coat and skin check, so we groom for the pet in front of us, not the one in the booking system.</p>
     </div>
     <div class="services">
       <article class="svc">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=600&h=600&q=70" alt="Fluffy cockapoo running on grass" loading="lazy"></div>
-        <div class="svc-body">
-          <h3>Full groom</h3>
-          <p>Bath, blow-dry, breed or custom cut, nails, ears and a finishing spritz.</p>
-          <div class="svc-meta"><span>2–3 hrs</span><span>from $85</span></div>
-        </div>
+        <div class="ph"><img data-slot="Full groom: finished doodle or cavoodle" src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=600&h=750&q=70" alt="Fluffy cockapoo running on grass" loading="lazy"></div>
+        <div class="svc-body"><h3>Full groom</h3><p>Bath, blow-dry, breed or custom cut, nails, ears and a finishing spritz.</p><div class="svc-meta"><span>2–3 hrs</span><span>from $85</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&h=600&q=70" alt="Jack Russell Terrier smiling" loading="lazy"></div>
-        <div class="svc-body">
-          <h3>Bath &amp; tidy</h3>
-          <p>Hydrobath, de-shed, face, feet and sanitary trim between full grooms.</p>
-          <div class="svc-meta"><span>60–90 min</span><span>from $55</span></div>
-        </div>
+        <div class="ph"><img data-slot="Bath & tidy: short-coat breed, happy face" src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&h=750&q=70" alt="Jack Russell Terrier smiling" loading="lazy"></div>
+        <div class="svc-body"><h3>Bath &amp; tidy</h3><p>Hydrobath, de-shed, face, feet and sanitary trim between full grooms.</p><div class="svc-meta"><span>60–90 min</span><span>from $55</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&h=600&q=70" alt="Brown and white puppy" loading="lazy"></div>
-        <div class="svc-body">
-          <h3>Puppy intro</h3>
-          <p>A short, treat-heavy first visit for pups 10–20 weeks. Builds trust for life.</p>
-          <div class="svc-meta"><span>45 min</span><span>$49</span></div>
-        </div>
+        <div class="ph"><img data-slot="Puppy intro: pup with groomer's hands, treat" src="https://images.unsplash.com/photo-1592887302112-b87aca16ad2c?auto=format&fit=crop&w=600&h=750&q=70" alt="Small puppy on a towel" loading="lazy"></div>
+        <div class="svc-body"><h3>Puppy intro</h3><p>A short, treat-heavy first visit for pups 10–20 weeks. Builds trust for life.</p><div class="svc-meta"><span>45 min</span><span>$49</span></div></div>
       </article>
       <article class="svc">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?auto=format&fit=crop&w=600&h=600&q=70" alt="Grey tabby cat looking calm" loading="lazy"></div>
-        <div class="svc-body">
-          <h3>Cat groom</h3>
-          <p>Quiet-room bath, dematting or lion cut. Cat-only mornings, no barking.</p>
-          <div class="svc-meta"><span>60–90 min</span><span>from $95</span></div>
-        </div>
+        <div class="ph"><img data-slot="Cat groom: calm long-hair cat after brushing" src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?auto=format&fit=crop&w=600&h=750&q=70" alt="Grey tabby cat looking calm" loading="lazy"></div>
+        <div class="svc-body"><h3>Cat groom</h3><p>Quiet-room bath, dematting or lion cut. Cat-only mornings, no barking.</p><div class="svc-meta"><span>60–90 min</span><span>from $95</span></div></div>
       </article>
-    </div>
-  </section>
-
-  <section id="process" style="padding-top:0">
-    <div class="process">
-      <div class="process-copy">
-        <span class="eyebrow">How a visit works</span>
-        <h2>From booking to bandana in four steps</h2>
-      </div>
-      <div class="ph">
-        <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&w=800&h=1000&q=70" alt="Fluffy white Samoyed on a pink background" loading="lazy">
-      </div>
-      <div class="steps">
-        <div class="step"><span class="step-n">Step 1</span><h3>Book online</h3><p>Pick a service and time. Tell us about coat, temperament and any no-go zones.</p></div>
-        <div class="step"><span class="step-n">Step 2</span><h3>Calm check-in</h3><p>Five-minute handover, coat and skin check, and we agree the cut before scissors come out.</p></div>
-        <div class="step"><span class="step-n">Step 3</span><h3>The pamper</h3><p>Warm hydrobath, hand blow-dry, cut, nails and ears. Breaks whenever your pet needs one.</p></div>
-        <div class="step"><span class="step-n">Step 4</span><h3>Photo text &amp; pick-up</h3><p>You get an SMS with a photo when they're done. No waiting around in a cage.</p></div>
-      </div>
     </div>
   </section>
 
@@ -375,7 +406,7 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
           <thead><tr><th>Size</th><th>Bath &amp; tidy</th><th>Full groom</th><th>Hand-scissor finish</th></tr></thead>
           <tbody>
             <tr><td>Small<small>under 10 kg · Cavoodle, Maltese, Shih Tzu</small></td><td class="p">$55</td><td class="p">$85</td><td class="p">$110</td></tr>
-            <tr><td>Medium<small>10–20 kg · Spoodle, Cocker, Schnauzer</small></td><td class="p">$70</td><td class="p">$105</td><td class="p">$135</td></tr>
+            <tr><td>Medium<small>10–20 kg · Spoodle, Cocker Spaniel, Schnauzer</small></td><td class="p">$70</td><td class="p">$105</td><td class="p">$135</td></tr>
             <tr><td>Large<small>20–35 kg · Labradoodle, Golden Retriever</small></td><td class="p">$90</td><td class="p">$130</td><td class="p">$165</td></tr>
             <tr><td>Giant<small>35 kg+ · Bernese, Samoyed, Newfoundland</small></td><td class="p">$115</td><td class="p">$160+</td><td class="p">$195+</td></tr>
           </tbody>
@@ -383,7 +414,7 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
       </div>
       <div class="price-notes">
         <span class="chip">Dematting: $15 per 15 min</span>
-        <span class="chip">Teeth brushing add-on: $12</span>
+        <span class="chip">Teeth brushing: $12</span>
         <span class="chip">Blueberry facial: $10</span>
         <span class="chip">Every 4–6 weeks? Save 10%</span>
       </div>
@@ -393,7 +424,7 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   <section style="padding-top:0">
     <div class="why">
       <div class="why-card feature">
-        <span class="eyebrow" style="color:inherit;opacity:.8">Why owners switch to us</span>
+        <span class="eyebrow" style="color:inherit;opacity:.7">Why owners switch to us</span>
         <h2 style="font-size:clamp(1.8rem,3vw,2.4rem)">One pet at a time. No cage dryers. Ever.</h2>
         <p>Most anxious pets aren't scared of the clippers. They're scared of the noise, the waiting and being rushed. We removed all three.</p>
       </div>
@@ -403,9 +434,9 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
         <p>Most of our calendar is regulars on a 4–6 week cycle.</p>
       </div>
       <div class="why-card">
-        <span class="big-num">Fear&nbsp;Free</span>
-        <h3>Certified groomers</h3>
-        <p>Low-stress handling, pH-balanced, soap-free shampoos and breaks on request.</p>
+        <span class="big-num">1:1</span>
+        <h3>Groomer to pet</h3>
+        <p>Your pet is never left in a holding cage while someone else is on the table.</p>
       </div>
     </div>
   </section>
@@ -416,28 +447,27 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
       <p class="lede">Sample reviews for this template. Replace with your real Google reviews.</p>
     </div>
     <div class="reviews">
-      <figure class="review" style="margin:0">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <q>Our rescue cavoodle used to shake at the groomer. Third visit here and she trotted in on her own.</q>
-        <footer>Sarah K. · Cremorne · Cavoodle, 7 kg</footer>
-      </figure>
-      <figure class="review" style="margin:0">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <q>Price quoted at drop-off was exactly what I paid. And the photo text is a lovely touch.</q>
-        <footer>James P. · Neutral Bay · Golden Retriever, 31 kg</footer>
-      </figure>
-      <figure class="review" style="margin:0">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <q>Finally somewhere that grooms cats without sedation drama. Lion cut was perfect.</q>
-        <footer>Mei L. · Mosman · Persian cat</footer>
-      </figure>
+      <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><q>Our rescue cavoodle used to shake at the groomer. Third visit here and she trotted in on her own.</q><footer>Sarah K. · Cremorne · Cavoodle, 7 kg</footer></figure>
+      <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><q>Price quoted at drop-off was exactly what I paid. And the photo text is a lovely touch.</q><footer>James P. · Neutral Bay · Golden Retriever, 31 kg</footer></figure>
+      <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><q>Finally somewhere that grooms cats without the drama. Lion cut was perfect.</q><footer>Mei L. · Mosman · Persian cat</footer></figure>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="sec-head"><h2>Questions owners ask</h2><p class="lede">Can't see yours? Ask when you book and we'll text you back.</p></div>
+    <div class="faq">
+      <details open><summary>How long will my pet be with you?</summary><p>Bath and tidy takes 60–90 minutes and a full groom takes 2–3 hours, depending on size and coat. We text you a photo when they're ready, so you're never waiting around.</p></details>
+      <details><summary>My dog is anxious. Can you still groom them?</summary><p>Yes. We book anxious dogs into quiet first-of-the-day slots, take breaks whenever needed and stop if your pet is too stressed. You only pay for what we finish.</p></details>
+      <details><summary>What if my dog's coat is matted?</summary><p>We check the coat at drop-off. Light matting is brushed out at $15 per 15 minutes. If it's severe, we'll recommend a short clip-down, which is kinder than hours of brushing, and agree the price with you first.</p></details>
+      <details><summary>Do you need vaccination records?</summary><p>We ask for current C3 or C5 vaccinations for dogs and F3 for cats. Puppies can come for an intro visit after their second vaccination.</p></details>
+      <details><summary>What's your cancellation policy?</summary><p>Free cancellation or rebooking up to 24 hours before. If your pet is unwell on the day, rebook for free.</p></details>
     </div>
   </section>
 
   <section id="book" style="padding-top:0">
     <div class="book">
       <div>
-        <span class="eyebrow" style="color:var(--foam)">Book a groom</span>
+        <span class="eyebrow" style="color:var(--accent)">Book a groom</span>
         <h2 style="margin-top:12px">Book in 60 seconds. We'll text to confirm.</h2>
         <ul class="book-list">
           <li>Tue–Sat, 8am–5pm. Cat-only mornings Wednesday.</li>
@@ -446,18 +476,14 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
         </ul>
       </div>
       <form id="bookForm" novalidate>
-        <label>Your name<input id="f-name" name="name" autocomplete="name" required placeholder="Alex Chen"></label>
-        <label>Mobile<input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="04xx xxx xxx"></label>
-        <label>Pet's name<input id="f-pet" name="pet" required placeholder="Biscuit"></label>
+        <label>Your name<input id="f-name" name="name" autocomplete="name" placeholder="Alex Chen"></label>
+        <label>Mobile<input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="04xx xxx xxx"></label>
+        <label>Pet's name<input id="f-pet" name="pet" placeholder="Biscuit"></label>
         <label>Size
-          <select id="f-size" name="size">
-            <option>Small (under 10 kg)</option><option>Medium (10–20 kg)</option><option>Large (20–35 kg)</option><option>Giant (35 kg+)</option><option>Cat</option>
-          </select>
+          <select id="f-size" name="size"><option>Small (under 10 kg)</option><option>Medium (10–20 kg)</option><option>Large (20–35 kg)</option><option>Giant (35 kg+)</option><option>Cat</option></select>
         </label>
         <label class="full">Service
-          <select id="f-service" name="service">
-            <option>Full groom</option><option>Bath &amp; tidy</option><option>Puppy intro</option><option>Cat groom</option>
-          </select>
+          <select id="f-service" name="service"><option>Full groom</option><option>Bath &amp; tidy</option><option>Puppy intro</option><option>Cat groom</option></select>
         </label>
         <button class="btn btn-primary full" type="submit">Request my booking <span class="arr" aria-hidden="true">↗</span></button>
         <p class="form-msg" id="formMsg" role="status"></p>
@@ -466,14 +492,11 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   </section>
 
   <footer class="site">
-    <div>
-      <a class="logo" href="#top">Pawlour</a>
-      <p style="margin-top:12px">Low-stress dog and cat grooming on Sydney's lower north shore.</p>
-    </div>
+    <div><a class="logo" href="#top">Pawlour</a><p style="margin-top:12px">Low-stress dog and cat grooming on Sydney's lower north shore.</p></div>
     <div><h4>Services</h4><ul><li>Full groom</li><li>Bath &amp; tidy</li><li>Puppy intro</li><li>Cat groom</li></ul></div>
     <div><h4>Studio</h4><ul><li>Military Rd, Mosman NSW 2088</li><li>Tue–Sat · 8am–5pm</li><li>hello@pawlour.example</li></ul></div>
     <div><h4>Company</h4><ul><li>About</li><li>Gift cards</li><li>Careers</li><li>Privacy</li></ul></div>
-    <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Photos: Unsplash</span></div>
+    <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Placeholder photos: Unsplash</span></div>
   </footer>
 </main>
 
@@ -482,20 +505,21 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var paw = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg>';
 
-  // Image fallback: designed placeholder if a photo can't load
+  // Photo slots: if an image can't load, show the shot brief instead
   document.querySelectorAll('.ph img').forEach(function(img){
-    var fb = document.createElement('div'); fb.className = 'fb'; fb.innerHTML = paw + '<span>' + img.alt + '</span>';
+    var fb = document.createElement('div'); fb.className = 'fb';
+    var slot = img.dataset.slot || img.alt, parts = slot.split(':');
+    fb.innerHTML = paw + '<b>' + parts[0] + '</b><span>' + (parts.slice(1).join(':').trim() || '') + '</span>';
     img.parentNode.insertBefore(fb, img);
     function fail(){ img.classList.add('gone'); }
     img.addEventListener('error', fail);
     if (img.complete && img.naturalWidth === 0) fail();
   });
 
-  // Split headline into animated characters
+  // Animated headline: split into characters
   var delay = 0;
   document.querySelectorAll('[data-split]').forEach(function(el){
-    var text = el.textContent; el.textContent = '';
-    el.setAttribute('aria-hidden','true');
+    var text = el.textContent; el.textContent = ''; el.setAttribute('aria-hidden','true');
     Array.from(text).forEach(function(c){
       var s = document.createElement('span'); s.className = 'ch';
       s.textContent = c === ' ' ? ' ' : c;
@@ -505,60 +529,74 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     delay += 0.15;
   });
 
-  // Rotating word
-  var words = Array.from(document.querySelectorAll('.rot-box span'));
-  var i = 0;
-  if (!reduce && words.length > 1) {
-    setInterval(function(){
-      var cur = words[i], next = words[(i + 1) % words.length];
-      cur.classList.add('out');
-      next.classList.remove('out'); next.classList.add('in');
-      void next.offsetWidth; next.classList.remove('in');
-      setTimeout(function(){ cur.classList.remove('out'); cur.classList.add('in'); }, 560);
-      i = (i + 1) % words.length;
-    }, 2800);
-  }
+  // Rotating phrase
+  var words = Array.from(document.querySelectorAll('.rot-box span')), wi = 0;
+  if (!reduce && words.length > 1) setInterval(function(){
+    var cur = words[wi], next = words[(wi + 1) % words.length];
+    cur.classList.add('out'); next.classList.remove('out'); next.classList.add('in');
+    void next.offsetWidth; next.classList.remove('in');
+    setTimeout(function(){ cur.classList.remove('out'); cur.classList.add('in'); }, 560);
+    wi = (wi + 1) % words.length;
+  }, 2800);
 
   // Soap bubbles
   var host = document.getElementById('bubbles');
-  if (!reduce && host) {
-    for (var b = 0; b < 16; b++) {
-      var d = document.createElement('span'); d.className = 'bubble';
-      var size = 10 + Math.random() * 38;
-      d.style.width = d.style.height = size + 'px';
-      d.style.left = (Math.random() * 100) + '%';
-      d.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
-      d.style.animationDuration = (9 + Math.random() * 10) + 's';
-      d.style.animationDelay = (-Math.random() * 18) + 's';
-      host.appendChild(d);
-    }
+  if (!reduce && host) for (var b = 0; b < 18; b++) {
+    var d = document.createElement('span'); d.className = 'bubble';
+    var size = 12 + Math.random() * 42;
+    d.style.width = d.style.height = size + 'px';
+    d.style.left = (40 + Math.random() * 60) + '%';
+    d.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+    d.style.animationDuration = (9 + Math.random() * 10) + 's';
+    d.style.animationDelay = (-Math.random() * 18) + 's';
+    host.appendChild(d);
   }
 
-  // Count-up numbers (final value already in the markup)
+  // Bath story: auto-advancing tabs, pause on hover
+  var story = document.getElementById('storyEl');
+  var tabs = Array.from(story.querySelectorAll('[role="tab"]'));
+  var frames = Array.from(story.querySelectorAll('.frame'));
+  var si = 0, timer = null;
+  function show(i){
+    si = i;
+    tabs.forEach(function(t, k){ t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    frames.forEach(function(f, k){ f.classList.toggle('on', k === i); });
+  }
+  function play(){ clearInterval(timer); if (!reduce) timer = setInterval(function(){ show((si + 1) % tabs.length); }, 4500); }
+  tabs.forEach(function(t, k){
+    t.addEventListener('click', function(){ show(k); play(); });
+    t.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); var n = (k + 1) % tabs.length; show(n); tabs[n].focus(); play(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); var p = (k - 1 + tabs.length) % tabs.length; show(p); tabs[p].focus(); play(); }
+    });
+  });
+  story.addEventListener('mouseenter', function(){ clearInterval(timer); story.classList.add('paused'); });
+  story.addEventListener('mouseleave', function(){ story.classList.remove('paused'); play(); });
+  play();
+
+  // Count-up (final values already in markup)
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (!e.isIntersecting) return; io.unobserve(e.target);
-        var el = e.target, end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || '', t0 = null;
-        function step(t){
-          if (!t0) t0 = t; var p = Math.min((t - t0) / 1400, 1), v = end * (1 - Math.pow(1 - p, 3));
-          el.textContent = v.toLocaleString('en-AU', {minimumFractionDigits: dec, maximumFractionDigits: dec}) + suf;
-          if (p < 1) requestAnimationFrame(step);
-        }
+        var el = e.target, end = parseFloat(el.dataset.count), suf = el.dataset.suffix || '', t0 = null;
+        function step(t){ if (!t0) t0 = t; var p = Math.min((t - t0) / 1400, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('en-AU') + suf;
+          if (p < 1) requestAnimationFrame(step); }
         requestAnimationFrame(step);
       });
     }, {threshold: .6});
     document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el); });
   }
 
-  // Booking form (demo: no data leaves the page)
+  // Booking form (demo: nothing leaves the page)
   var form = document.getElementById('bookForm'), msg = document.getElementById('formMsg');
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = form.name.value.trim(), phone = form.phone.value.trim(), pet = form.pet.value.trim();
+    var name = form.name.value.trim(), phone = form.phone.value.replace(/\s+/g,''), pet = form.pet.value.trim();
     if (!name || !phone || !pet) { msg.textContent = 'Add your name, mobile and your pet’s name so we can confirm the booking.'; return; }
-    if (!/^(\+?61|0)4\d{2}\s?\d{3}\s?\d{3}$/.test(phone.replace(/\s+/g,' ').trim())) { msg.textContent = 'Enter an Australian mobile, for example 0412 345 678.'; return; }
-    msg.textContent = 'Thanks ' + name.split(' ')[0] + '. In the live site this request goes to the booking system and ' + pet + '’s slot is confirmed by SMS. (Demo: nothing was sent.)';
+    if (!/^(\+?61|0)4\d{8}$/.test(phone)) { msg.textContent = 'Enter an Australian mobile, for example 0412 345 678.'; return; }
+    msg.textContent = 'Thanks ' + name.split(' ')[0] + '. On the live site this goes to the booking system and ' + pet + '’s slot is confirmed by SMS. (Demo: nothing was sent.)';
     form.reset();
   });
 })();
