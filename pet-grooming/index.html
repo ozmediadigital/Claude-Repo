@@ -36,6 +36,7 @@
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
@@ -64,6 +65,7 @@ a{color:inherit}
 .nav-pill{display:flex;gap:4px;list-style:none;margin:0;padding:5px;background:var(--panel);border-radius:var(--r-pill);box-shadow:inset 0 0 0 1px var(--line)}
 .nav-pill a{display:block;padding:.45em 1em;border-radius:var(--r-pill);text-decoration:none;font-size:.9rem;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
 .nav-pill a:hover{background:var(--panel-2);color:var(--ink)}
+.nav-pill a.active{background:var(--ink);color:var(--bg)}
 .nav .btn{padding:.7em 1.15em;font-size:.88rem;border-radius:var(--r-pill)}
 
 /* Hero */
@@ -76,11 +78,10 @@ a{color:inherit}
 @keyframes rise{from{transform:translateY(105%) rotate(6deg);opacity:0}to{transform:none;opacity:1}}
 .rotator{font-family:var(--f-display);font-size:clamp(1.25rem,2.4vw,1.7rem);display:flex;flex-wrap:wrap;gap:.35em;align-items:baseline}
 .rot-box{position:relative;display:inline-grid;height:1.3em;overflow:hidden;vertical-align:bottom}
-.rot-box span{grid-area:1/1;font-weight:600;color:var(--accent);white-space:nowrap;transition:transform .55s cubic-bezier(.7,0,.2,1), opacity .55s}
+.rot-box span{grid-area:1/1;justify-self:start;font-weight:600;color:var(--accent);white-space:nowrap;transition:transform .55s cubic-bezier(.7,0,.2,1), opacity .55s;
+  background:linear-gradient(currentColor,currentColor) left bottom 2px/100% 2px no-repeat}
 .rot-box span.out{transform:translateY(-110%);opacity:0}
 .rot-box span.in{transform:translateY(110%);opacity:0}
-.rot-box::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--accent);transform-origin:left;animation:underline 2.8s ease-in-out infinite}
-@keyframes underline{0%{transform:scaleX(0)}40%,80%{transform:scaleX(1)}100%{transform:scaleX(0);transform-origin:right}}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
 
 /* Photo frames with designed fallback */
@@ -97,7 +98,7 @@ a{color:inherit}
 .pill-proof{position:absolute;left:0;bottom:16%;z-index:4;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 10px;border-radius:var(--r-pill);
   background:color-mix(in srgb,var(--panel) 78%,transparent);backdrop-filter:blur(12px);box-shadow:var(--shadow);animation:floaty 6s ease-in-out infinite}
 .avatars{display:flex}
-.avatars span{width:34px;height:34px;border-radius:50%;border:2px solid var(--panel);margin-left:-10px;display:grid;place-items:center;font-size:.72rem;font-weight:600;color:var(--accent-ink)}
+.avatars span{width:34px;height:34px;border-radius:50%;border:2px solid var(--panel);margin-left:-10px;display:grid;place-items:center;font-size:.62rem;font-weight:600;letter-spacing:.02em;color:#FFF8F0}
 .avatars span:first-child{margin-left:0}
 .pill-proof b{font-family:var(--f-display);font-size:1.05rem;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
 .pill-proof small{color:var(--muted);font-size:.78rem}
@@ -119,15 +120,15 @@ a{color:inherit}
   box-shadow:inset 0 0 6px rgba(255,255,255,.6);animation:bubble linear infinite}
 @keyframes bubble{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.95}100%{transform:translate(var(--dx),-740px) scale(1);opacity:0}}
 
-/* Service bubbles (icon row) */
-.svc-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:8px 0}
-.svc-ic{display:grid;justify-items:center;gap:12px;text-align:center;text-decoration:none}
-.bub{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;color:var(--ink);
+/* Trust bar: glossy bubble icons (one row, replaces a redundant services row) */
+.trust{list-style:none;margin:0;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 24px;background:var(--panel);border-radius:var(--r-lg);box-shadow:0 1px 0 var(--line)}
+.trust li{display:flex;align-items:center;gap:14px;min-width:0}
+.trust b{display:block;font-size:.95rem;line-height:1.25}
+.trust small{color:var(--muted);font-size:.82rem}
+.bub{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--accent);
   background:radial-gradient(circle at 32% 26%,var(--suds) 0 12%,transparent 30%),radial-gradient(circle at 50% 50%,var(--panel) 55%,var(--panel-2) 100%);
-  box-shadow:inset -6px -10px 18px rgba(180,101,42,.14),inset 6px 6px 12px rgba(255,255,255,.7),0 18px 30px -18px rgba(60,40,20,.5);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
-.svc-ic:hover .bub{transform:translateY(-6px) scale(1.06)}
-.bub svg{width:38px;height:38px}
-.svc-ic span{font-weight:600;font-size:.95rem}
+  box-shadow:inset -4px -6px 12px rgba(180,101,42,.14),inset 4px 4px 8px rgba(255,255,255,.7),0 10px 18px -12px rgba(60,40,20,.5)}
+.bub svg{width:22px;height:22px}
 
 /* Marquee */
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;margin-top:56px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)))}
@@ -215,9 +216,40 @@ tr:last-child td{border-bottom:0}
 .book{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--ink);color:var(--bg);border-radius:var(--r-lg);padding:clamp(24px,5vw,56px);position:relative;overflow:hidden}
 .book > *{min-width:0;position:relative;z-index:2}
 .book h2{color:var(--bg)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{display:grid;gap:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em}
-input,select{font:500 .95rem var(--f-body);padding:.85em 1em;border-radius:14px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);width:100%}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+label,.fs-legend{display:grid;gap:6px;font-size:.8rem;font-weight:600;letter-spacing:.04em}
+.req{color:var(--accent)}
+input,select{font:500 1rem var(--f-body);min-height:48px;padding:.75em 1em;border-radius:14px;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);width:100%;transition:border-color .15s,background .15s}
+input:focus,select:focus{outline:none;border-color:var(--accent);background:color-mix(in srgb,var(--bg) 12%,transparent)}
+input[aria-invalid="true"]{border-color:#E5806B}
+.err{font-size:.78rem;font-weight:500;letter-spacing:0;color:#F2A190;min-height:1em}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.seg label{display:block;cursor:pointer;padding:.55em .95em;border-radius:12px;font-size:.85rem;font-weight:500;letter-spacing:0;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);transition:background .15s,color .15s,border-color .15s;min-height:40px}
+.seg label small{display:block;font-size:.7rem;opacity:.7;font-weight:400}
+.seg input:checked + label{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.seg input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px}
+.estimate{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:16px;background:color-mix(in srgb,var(--accent) 22%,transparent)}
+.estimate span{font-size:.85rem;color:color-mix(in srgb,var(--bg) 80%,transparent)}
+.estimate b{font-family:var(--f-display);font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--bg)}
+.done{display:grid;gap:14px;align-content:center;justify-items:start;padding:28px;border-radius:var(--r-md);background:color-mix(in srgb,var(--bg) 8%,transparent)}
+.done .tick{width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:1.6rem;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.done p{color:color-mix(in srgb,var(--bg) 80%,transparent)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+/* Mobile sticky booking bar (Fitts: primary action within thumb reach) */
+.mbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;align-items:center;justify-content:space-between;
+  padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(12px);box-shadow:0 -10px 30px -18px rgba(60,40,20,.5);
+  transform:translateY(110%);transition:transform .3s ease}
+.mbar.show{transform:none}
+.mbar small{display:block;color:var(--muted);font-size:.75rem}
+.mbar b{font-size:.95rem}
+.mbar .btn{padding:.8em 1.2em}
+/* Reviews summary */
+.rating{display:flex;align-items:center;gap:14px}
+.rating b{font-family:var(--f-display);font-size:3rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.rating small{display:block;color:var(--muted);font-size:.85rem}
 input::placeholder{color:color-mix(in srgb,var(--bg) 45%,transparent)}
 select option{color:#2A221C;background:#F8F3EC}
 .full{grid-column:1/-1}
@@ -237,7 +269,8 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   .hero{grid-template-columns:1fr}
   .hero-media{min-height:500px}
   .story{grid-template-columns:1fr}
-  .story-stage{min-height:440px;order:-1}
+  .story-stage{min-height:380px;order:-1}
+  .trust{grid-template-columns:1fr 1fr}
   .services{grid-template-columns:repeat(2,1fr)}
   .book{grid-template-columns:1fr}
   .why,.reviews{grid-template-columns:1fr 1fr}
@@ -249,7 +282,9 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   .nav-pill{display:none}
   .sec-head{grid-template-columns:1fr}
   section{padding-block:60px}
-  .svc-icons{grid-template-columns:repeat(2,1fr);row-gap:28px}
+  .trust{grid-template-columns:1fr 1fr;padding:18px}
+  .trust .bub{width:44px;height:44px}
+  .mbar{display:flex}
 }
 @media (max-width:560px){
   .services,.why,.reviews,form{grid-template-columns:1fr}
@@ -258,6 +293,10 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   .arch{width:86%;right:0}
   .doodle-2{display:none}
   .story-steps button{padding:14px}
+  .trust{grid-template-columns:1fr;gap:14px}
+  .story-stage{min-height:320px}
+  .hero-ctas .btn{flex:1 1 100%;justify-content:center}
+  footer.site{padding-bottom:110px}
   footer.site{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion: reduce){
@@ -321,24 +360,12 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     </div>
   </section>
 
-  <nav class="svc-icons" aria-label="Services">
-    <a class="svc-ic" href="#services">
-      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></span>
-      <span>Full groom</span>
-    </a>
-    <a class="svc-ic" href="#services">
-      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><circle cx="15" cy="6" r="1.2"/><circle cx="18.5" cy="8.5" r="1"/><circle cx="14" cy="9.5" r=".8"/></svg></span>
-      <span>Bath &amp; tidy</span>
-    </a>
-    <a class="svc-ic" href="#services">
-      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg></span>
-      <span>Puppy intro</span>
-    </a>
-    <a class="svc-ic" href="#services">
-      <span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l3 4h8l3-4v9a7 7 0 0 1-14 0z"/><path d="M9.5 13h.01M14.5 13h.01M11 16h2M3 15h3M3 18l3-1M21 15h-3M21 18l-3-1"/></svg></span>
-      <span>Cat groom</span>
-    </a>
-  </nav>
+  <ul class="trust" aria-label="Why owners trust us">
+    <li><span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></span><div><b>4.9 on Google</b><small>612 local reviews</small></div></li>
+    <li><span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><div><b>Fear Free certified</b><small>Low-stress handling</small></div></li>
+    <li><span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="9" r="2.2"/><circle cx="9.5" cy="5" r="2.2"/><circle cx="14.5" cy="5" r="2.2"/><circle cx="18.5" cy="9" r="2.2"/><path d="M12 11c-3.5 0-6 3.6-6 6.2 0 1.9 1.4 2.8 3 2.8 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.8 0-2.6-2.5-6.2-6-6.2z"/></svg></span><div><b>One pet at a time</b><small>No cage dryers, ever</small></div></li>
+    <li><span class="bub" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></span><div><b>Photo text when ready</b><small>No waiting around</small></div></li>
+  </ul>
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
@@ -444,7 +471,10 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
   <section id="reviews" style="padding-top:0">
     <div class="sec-head">
       <h2>What owners say</h2>
-      <p class="lede">Sample reviews for this template. Replace with your real Google reviews.</p>
+      <div class="rating">
+        <b>4.9</b>
+        <div><span class="stars" aria-label="4.9 out of 5 stars">★★★★★</span><small>Average from 612 Google reviews. Sample reviews below: replace with real ones.</small></div>
+      </div>
     </div>
     <div class="reviews">
       <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><q>Our rescue cavoodle used to shake at the groomer. Third visit here and she trotted in on her own.</q><footer>Sarah K. · Cremorne · Cavoodle, 7 kg</footer></figure>
@@ -475,19 +505,46 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
           <li>Free parking out front on Military Rd.</li>
         </ul>
       </div>
+      <div class="book-panel">
       <form id="bookForm" novalidate>
-        <label>Your name<input id="f-name" name="name" autocomplete="name" placeholder="Alex Chen"></label>
-        <label>Mobile<input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="04xx xxx xxx"></label>
-        <label>Pet's name<input id="f-pet" name="pet" placeholder="Biscuit"></label>
-        <label>Size
-          <select id="f-size" name="size"><option>Small (under 10 kg)</option><option>Medium (10–20 kg)</option><option>Large (20–35 kg)</option><option>Giant (35 kg+)</option><option>Cat</option></select>
+        <label for="f-service" class="full">Service
+          <select id="f-service" name="service">
+            <option value="full">Full groom</option><option value="bath">Bath &amp; tidy</option><option value="puppy">Puppy intro (10–20 weeks)</option><option value="cat">Cat groom</option>
+          </select>
         </label>
-        <label class="full">Service
-          <select id="f-service" name="service"><option>Full groom</option><option>Bath &amp; tidy</option><option>Puppy intro</option><option>Cat groom</option></select>
-        </label>
+        <fieldset class="full" id="sizeSet">
+          <legend class="fs-legend">Pet size</legend>
+          <div class="seg">
+            <input type="radio" name="size" id="s-s" value="s" checked><label for="s-s">Small<small>under 10 kg</small></label>
+            <input type="radio" name="size" id="s-m" value="m"><label for="s-m">Medium<small>10–20 kg</small></label>
+            <input type="radio" name="size" id="s-l" value="l"><label for="s-l">Large<small>20–35 kg</small></label>
+            <input type="radio" name="size" id="s-g" value="g"><label for="s-g">Giant<small>35 kg+</small></label>
+          </div>
+        </fieldset>
+        <fieldset class="full">
+          <legend class="fs-legend">Preferred day</legend>
+          <div class="seg">
+            <input type="radio" name="day" id="d-tue" value="Tuesday" checked><label for="d-tue">Tue</label>
+            <input type="radio" name="day" id="d-wed" value="Wednesday"><label for="d-wed">Wed</label>
+            <input type="radio" name="day" id="d-thu" value="Thursday"><label for="d-thu">Thu</label>
+            <input type="radio" name="day" id="d-fri" value="Friday"><label for="d-fri">Fri</label>
+            <input type="radio" name="day" id="d-sat" value="Saturday"><label for="d-sat">Sat</label>
+          </div>
+        </fieldset>
+        <div class="estimate full" aria-live="polite"><span id="estLabel">Full groom · Small</span><b id="estPrice">$85</b></div>
+        <label for="f-name"><span>Your name <span class="req" aria-hidden="true">*</span></span><input id="f-name" name="owner" autocomplete="name" placeholder="Alex Chen" aria-describedby="e-name"><span class="err" id="e-name"></span></label>
+        <label for="f-phone"><span>Mobile <span class="req" aria-hidden="true">*</span></span><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0412 345 678" aria-describedby="e-phone"><span class="err" id="e-phone"></span></label>
+        <label for="f-pet" class="full"><span>Pet's name <span class="req" aria-hidden="true">*</span></span><input id="f-pet" name="pet" placeholder="Biscuit" aria-describedby="e-pet"><span class="err" id="e-pet"></span></label>
         <button class="btn btn-primary full" type="submit">Request my booking <span class="arr" aria-hidden="true">↗</span></button>
-        <p class="form-msg" id="formMsg" role="status"></p>
+        <p class="form-msg full" style="margin:0;font-size:.8rem;color:color-mix(in srgb,var(--bg) 60%,transparent)">No payment now. Final price confirmed at check-in after a coat check.</p>
       </form>
+      <div class="done" id="bookDone" hidden role="status" tabindex="-1">
+        <span class="tick" aria-hidden="true">✓</span>
+        <h3 style="font-size:1.6rem;color:var(--bg)" id="doneTitle">Request received</h3>
+        <p id="doneText"></p>
+        <button class="btn btn-ghost" type="button" id="bookAgain" style="background:transparent;color:var(--bg);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--bg) 35%,transparent)">Book another pet</button>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -499,6 +556,11 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     <div class="legal"><span>© 2026 Pawlour Grooming Studio. Demo template.</span><span>Placeholder photos: Unsplash</span></div>
   </footer>
 </main>
+
+<div class="mbar" id="mbar">
+  <div><small>Full groom from</small><b>$85 · Next: Thu 9:30am</b></div>
+  <a class="btn btn-primary" href="#book">Book <span class="arr" aria-hidden="true">↗</span></a>
+</div>
 
 <script>
 (function(){
@@ -589,15 +651,69 @@ footer.site p{color:var(--muted);font-size:.92rem;max-width:34ch}
     document.querySelectorAll('[data-count]').forEach(function(el){ io.observe(el); });
   }
 
-  // Booking form (demo: nothing leaves the page)
-  var form = document.getElementById('bookForm'), msg = document.getElementById('formMsg');
+  // Booking form: live price estimate, inline validation, designed success state (demo: nothing leaves the page)
+  var form = document.getElementById('bookForm'), done = document.getElementById('bookDone');
+  var PRICES = { full:{s:85,m:105,l:130,g:160}, bath:{s:55,m:70,l:90,g:115}, puppy:{s:49,m:49,l:49,g:49}, cat:{s:95,m:95,l:95,g:95} };
+  var SIZE = { s:'Small', m:'Medium', l:'Large', g:'Giant' };
+  var svcSel = form.service, sizeSet = document.getElementById('sizeSet');
+  function estimate(){
+    var svc = svcSel.value, size = form.querySelector('[name=size]:checked').value, p = PRICES[svc][size];
+    var flat = svc === 'puppy' || svc === 'cat';
+    sizeSet.hidden = flat;
+    document.getElementById('estLabel').textContent = svcSel.options[svcSel.selectedIndex].text + (flat ? '' : ' · ' + SIZE[size]);
+    document.getElementById('estPrice').textContent = (svc === 'full' && size === 'g' ? 'from ' : '') + '$' + p;
+  }
+  form.addEventListener('change', estimate); estimate();
+
+  function setErr(input, text){
+    input.setAttribute('aria-invalid', text ? 'true' : 'false');
+    document.getElementById(input.getAttribute('aria-describedby')).textContent = text;
+  }
+  function check(input){
+    var v = input.value.trim(), t = '';
+    if (input.name === 'owner' && !v) t = 'Add your name so we know who to text.';
+    if (input.name === 'pet' && !v) t = 'Add your pet’s name.';
+    if (input.name === 'phone') {
+      var n = v.replace(/[\s()-]/g,'');
+      if (!n) t = 'Add a mobile so we can confirm by SMS.';
+      else if (!/^(\+?61|0)4\d{8}$/.test(n)) t = 'Use an Australian mobile, for example 0412 345 678.';
+    }
+    setErr(input, t); return !t;
+  }
+  ['owner','phone','pet'].forEach(function(k){
+    form[k].addEventListener('blur', function(){ if (form[k].value) check(form[k]); });
+    form[k].addEventListener('input', function(){ if (form[k].getAttribute('aria-invalid') === 'true') check(form[k]); });
+  });
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = form.name.value.trim(), phone = form.phone.value.replace(/\s+/g,''), pet = form.pet.value.trim();
-    if (!name || !phone || !pet) { msg.textContent = 'Add your name, mobile and your pet’s name so we can confirm the booking.'; return; }
-    if (!/^(\+?61|0)4\d{8}$/.test(phone)) { msg.textContent = 'Enter an Australian mobile, for example 0412 345 678.'; return; }
-    msg.textContent = 'Thanks ' + name.split(' ')[0] + '. On the live site this goes to the booking system and ' + pet + '’s slot is confirmed by SMS. (Demo: nothing was sent.)';
-    form.reset();
+    var bad = ['owner','phone','pet'].filter(function(k){ return !check(form[k]); });
+    if (bad.length) { form[bad[0]].focus(); return; }
+    var day = form.querySelector('[name=day]:checked').value;
+    document.getElementById('doneTitle').textContent = 'Thanks, ' + form.owner.value.trim().split(' ')[0] + '.';
+    document.getElementById('doneText').textContent = 'We’ll text ' + form.phone.value.trim() + ' within business hours to confirm ' + form.pet.value.trim() + '’s ' + svcSel.options[svcSel.selectedIndex].text.toLowerCase() + ' on ' + day + '. Demo only: nothing was sent.';
+    form.hidden = true; done.hidden = false; done.focus();
   });
+  document.getElementById('bookAgain').addEventListener('click', function(){
+    form.reset(); estimate(); ['owner','phone','pet'].forEach(function(k){ setErr(form[k], ''); });
+    done.hidden = true; form.hidden = false; form.service.focus();
+  });
+
+  // Active nav section (H1: show where you are)
+  var links = Array.from(document.querySelectorAll('.nav-pill a'));
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+
+    // Mobile booking bar: show after the hero, hide once the booking form is on screen
+    var mbar = document.getElementById('mbar'), heroGone = false, bookOn = false;
+    function upd(){ mbar.classList.toggle('show', heroGone && !bookOn); }
+    new IntersectionObserver(function(en){ heroGone = !en[0].isIntersecting; upd(); }).observe(document.querySelector('.hero-ctas'));
+    new IntersectionObserver(function(en){ bookOn = en[0].isIntersecting; upd(); }, {threshold:.2}).observe(document.getElementById('book'));
+  }
 })();
 </script>
